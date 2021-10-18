@@ -1,0 +1,7 @@
+{
+  "name": "ayam-bebek-pak-boss",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
