@@ -7,7 +7,7 @@ Final project for Mobile Cross-Platform Programming, developed for Ayam Bebek Pa
 - [Node.js 16+](https://nodejs.org/en/)
 - [Ionic CLI](https://ionicframework.com/docs/cli)
 
-Please use the latest version.
+Please use the latest version (16 for `node` and 8 for `npm`).
 
 ## Development
 
