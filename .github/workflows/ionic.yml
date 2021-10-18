@@ -1,0 +1,26 @@
+name: Ionic
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  react:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: ./package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Format, type-check, and lint code
+        run: npm run lint
