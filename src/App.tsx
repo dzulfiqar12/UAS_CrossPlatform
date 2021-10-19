@@ -25,9 +25,9 @@ const App = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path={routes.root} component={Home} />
+        <Route exact path={routes.home} component={Home} />
 
-        <Redirect exact from="*" to={routes.root} />
+        <Redirect exact from="/" to={routes.home} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
