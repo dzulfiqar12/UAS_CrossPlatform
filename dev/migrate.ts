@@ -10,6 +10,7 @@ import {
   setDoc,
 } from 'firebase/firestore';
 
+import firebaseConfig from '../src/firebase/config';
 import type Menu from '../src/types/Menu';
 import alaCarteMenus from './data/alaCarteMenu';
 import goHomeMenus from './data/goHomeMenu';
@@ -21,14 +22,7 @@ import packageMenus from './data/packageMenu';
  * @returns FirebaseApp
  */
 function setupFirebaseApp() {
-  return initializeApp({
-    apiKey: 'AIzaSyA9eG5TPih1c8L2MNyBDcbXnv3ba8kwmWE',
-    authDomain: 'ayam-bebek-pak-boss-dev.firebaseapp.com',
-    projectId: 'ayam-bebek-pak-boss-dev',
-    storageBucket: 'ayam-bebek-pak-boss-dev.appspot.com',
-    messagingSenderId: '568795540694',
-    appId: '1:568795540694:web:0c874957391aa4b768ad77',
-  });
+  return initializeApp(firebaseConfig);
 }
 
 /**
