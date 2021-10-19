@@ -1,5 +1,5 @@
 const routes = {
-  root: '/',
+  home: '/app/home',
 } as const;
 
 export default routes;
