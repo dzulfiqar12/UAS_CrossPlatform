@@ -2,6 +2,9 @@ import { nanoid } from 'nanoid';
 
 import type Menu from '../../src/types/Menu';
 
+/**
+ * Menu for Go Home.
+ */
 const goHomeMenus: Menu[] = [
   {
     id: nanoid(),

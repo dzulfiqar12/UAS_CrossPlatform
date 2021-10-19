@@ -2,6 +2,9 @@ import { nanoid } from 'nanoid';
 
 import type Menu from '../../src/types/Menu';
 
+/**
+ * Menu for Packages.
+ */
 const packageMenus: Menu[] = [
   {
     id: nanoid(),

@@ -15,6 +15,11 @@ import alaCarteMenus from './data/alaCarteMenu';
 import goHomeMenus from './data/goHomeMenu';
 import packageMenus from './data/packageMenu';
 
+/**
+ * Initializes a Firebase instance.
+ *
+ * @returns FirebaseApp
+ */
 function setupFirebaseApp() {
   return initializeApp({
     apiKey: 'AIzaSyA9eG5TPih1c8L2MNyBDcbXnv3ba8kwmWE',
@@ -26,18 +31,34 @@ function setupFirebaseApp() {
   });
 }
 
+/**
+ * Deletes all menu in the database.
+ *
+ * @param db - Firestore instance
+ */
 async function deleteMenu(db: Firestore) {
   const q = query(collection(db, 'menu'));
   const snapshots = await getDocs(q);
   snapshots.forEach(async (doc) => await deleteDoc(doc.ref));
 }
 
+/**
+ * Deletes all transactions in the database.
+ *
+ * @param db - Firestore instance
+ */
 async function deleteTransactions(db: Firestore) {
   const q = query(collection(db, 'transactions'));
   const snapshots = await getDocs(q);
   snapshots.forEach(async (doc) => await deleteDoc(doc.ref));
 }
 
+/**
+ * Inserts all menu to the database.
+ *
+ * @param menu - All of the menu according to the database schema
+ * @param db - Firestore instance
+ */
 async function insertMenu(menu: Menu[], db: Firestore) {
   await Promise.all(
     menu.map(async (item) => {
@@ -46,6 +67,9 @@ async function insertMenu(menu: Menu[], db: Firestore) {
   );
 }
 
+/**
+ * Driver code.
+ */
 async function main() {
   const menu = [...alaCarteMenus, ...goHomeMenus, ...packageMenus];
 
@@ -61,6 +85,9 @@ async function main() {
   await insertMenu(menu, db);
 }
 
+/**
+ * Simulates 'function main()' in most progamming languages.
+ */
 if (require.main === module) {
   main()
     .then(() => {
