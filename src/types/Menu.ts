@@ -8,8 +8,8 @@ type Menu = {
   description: string;
   photo: string;
   category: 'Paket' | 'Ala Carte' | 'Go Home';
-  created: Date;
-  updated: Date;
+  created: number;
+  updated: number;
 };
 
 export default Menu;
