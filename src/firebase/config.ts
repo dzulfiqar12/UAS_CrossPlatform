@@ -1,5 +1,8 @@
 import { FirebaseOptions } from '@firebase/app';
 
+/**
+ * Firebase configuration defaults.
+ */
 const firebaseConfig: FirebaseOptions = {
   apiKey: 'AIzaSyA9eG5TPih1c8L2MNyBDcbXnv3ba8kwmWE',
   authDomain: 'ayam-bebek-pak-boss-dev.firebaseapp.com',
