@@ -99,7 +99,7 @@ const alaCarteMenus: Menu[] = [
   {
     id: nanoid(),
     name: 'Indomie Goreng Pak Boss + Telur',
-    price: 10000,
+    price: 14000,
     description: 'Indomie Goreng dengan bumbu Pak Boss, ditambah dengan telur bebas.',
     photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
     category: 'Ala Carte',
