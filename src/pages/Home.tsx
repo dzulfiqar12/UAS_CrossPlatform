@@ -61,7 +61,7 @@ const Home = () => {
           {menu
             .filter((item) => item.category === category)
             .map((item) => (
-              <IonItem>
+              <IonItem key={item.id}>
                 <IonAvatar slot="start">
                   <IonImg src={item.photo} alt={`Avatar of ${item.name}`} />
                 </IonAvatar>

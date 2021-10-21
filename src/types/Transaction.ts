@@ -1,4 +1,11 @@
-import Menu from './Menu';
+/**
+ * We do not use 'Menu' data type for our transaction item.
+ */
+type TransactionItem = {
+  name: string;
+  price: number;
+  quantity: number;
+};
 
 /**
  * Data type for 'Transaction' entity.
@@ -6,9 +13,11 @@ import Menu from './Menu';
 type Transaction = {
   id: string;
   customerName: string;
-  items: Menu[];
+  items: TransactionItem[];
+  tableName: string;
   totalPrice: number;
-  created: Date;
+  created: number;
+  status: 'In Progress' | 'Finished';
 };
 
 export default Transaction;

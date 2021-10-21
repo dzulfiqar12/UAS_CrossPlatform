@@ -18,18 +18,21 @@ import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 
+import ContextProvider from './components/ContextProvider';
 import Home from './pages/Home';
 import routes from './utils/routes';
 
 const App = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path={routes.home} component={Home} />
+    <ContextProvider>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path={routes.home} component={Home} />
 
-        <Redirect exact from="/" to={routes.home} />
-      </IonRouterOutlet>
-    </IonReactRouter>
+          <Redirect exact from="/" to={routes.home} />
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </ContextProvider>
   </IonApp>
 );
 
