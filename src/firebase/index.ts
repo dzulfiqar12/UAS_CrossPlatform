@@ -1,4 +1,5 @@
 import { getFirestore } from '@firebase/firestore';
+import { getStorage } from '@firebase/storage';
 import { initializeApp } from 'firebase/app';
 
 import firebaseConfig from './config';
@@ -15,7 +16,11 @@ const initializeFirebaseApp = () => initializeApp(firebaseConfig);
  *
  * @returns Firestore instance
  */
-export const fetchFirestore = () => {
-  const app = initializeFirebaseApp();
-  return getFirestore(app);
-};
+export const fetchFirestore = () => getFirestore(initializeFirebaseApp());
+
+/**
+ * Creates a single Cloud Storage instance based on the default settings.
+ *
+ * @returns Cloud Storage instance
+ */
+export const fetchStorage = () => getStorage(initializeFirebaseApp());
