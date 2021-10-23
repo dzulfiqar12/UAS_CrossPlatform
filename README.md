@@ -40,8 +40,16 @@ npm i
 npm run migrate
 ```
 
+- Ask the author for the credentials for the Firebase Authentication user in order to implement the login system. You may have to create one user if it does not exist yet.
+
 - Run this application in development mode.
 
 ```bash
 ionic serve
+```
+
+- Before committing code to the repository, please format, lint, and type-check.
+
+```bash
+npm run lint
 ```
