@@ -7,6 +7,7 @@ type Menu = {
   price: number;
   description: string;
   photo: string;
+  photoRef: string;
   category: 'Paket' | 'Ala Carte' | 'Go Home';
   created: number;
   updated: number;
