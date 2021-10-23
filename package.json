@@ -4,6 +4,7 @@
   "description": "An Ionic project",
   "private": true,
   "scripts": {
+    "clean": "rimraf build node_modules",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -59,6 +60,7 @@
     "@capacitor/cli": "3.2.5",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
     "ts-node": "^10.3.0"
   },
   "eslintConfig": {
