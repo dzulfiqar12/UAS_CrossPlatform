@@ -2,6 +2,8 @@
 
 Final project for Mobile Cross-Platform Programming, developed for Ayam Bebek Pak Boss as a part of a study-case.
 
+Complete documentation will be written after the application has been completely finished.
+
 ## Notes
 
 - Firebase API keys and app configurations are meant to be public. See [this](https://stackoverflow.com/questions/52100690/should-i-hide-firebase-api-keys-into-backend-not-due-to-data-security-but-proje), [this](https://stackoverflow.com/questions/61600373/what-is-the-best-way-to-secure-firebase-api-keys-in-a-react-app-so-it-is-not-acc), and [this](https://medium.com/@devesu/how-to-secure-your-firebase-project-even-when-your-api-key-is-publicly-available-a462a2a58843).
@@ -9,10 +11,18 @@ Final project for Mobile Cross-Platform Programming, developed for Ayam Bebek Pa
 
 ## Requirements
 
+For development:
+
 - [Node.js 16+](https://nodejs.org/en/)
 - [Ionic CLI](https://ionicframework.com/docs/cli)
 
 Please use the latest version (16 for `node` and 8 for `npm`).
+
+For production:
+
+- [Firebase](https://firebase.google.com)
+
+You need to set up Firebase Authentication, Firebase Cloud Storage, Firebase Firestore, and Firebase Hosting in order for this application to work properly in production scenarios. You may have to set up service accounts if you want the CI to be working.
 
 ## Development
 
@@ -52,4 +62,10 @@ ionic serve
 
 ```bash
 npm run lint
+```
+
+- You may run this script to clean up.
+
+```bash
+npm run clean
 ```
