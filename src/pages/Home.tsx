@@ -1,5 +1,6 @@
 import {
   IonAvatar,
+  IonButton,
   IonContent,
   IonHeader,
   IonImg,
@@ -74,6 +75,8 @@ const Home = () => {
               </IonItem>
             ))}
         </IonList>
+
+        <IonButton routerLink="/cart">Cart</IonButton>
       </IonContent>
     </IonPage>
   );

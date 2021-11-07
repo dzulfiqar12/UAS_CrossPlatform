@@ -19,6 +19,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 
 import ContextProvider from './components/ContextProvider';
+import Cart from './pages/Cart';
 import Home from './pages/Home';
 import routes from './utils/routes';
 
@@ -28,7 +29,7 @@ const App = () => (
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path={routes.home} component={Home} />
-
+          <Route exact path="/cart" component={Cart} />
           <Redirect exact from="/" to={routes.home} />
         </IonRouterOutlet>
       </IonReactRouter>
