@@ -1,6 +1,7 @@
 import {
   IonAvatar,
   IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonImg,
@@ -18,7 +19,7 @@ import { nanoid } from 'nanoid';
 import { useContext, useEffect, useState } from 'react';
 
 import ModalSingleMenu from '../components/ModalSingleMenu';
-import { fetchFirestore } from '../firebase';
+import { fetchAuth, fetchFirestore } from '../firebase';
 import { getMenu } from '../firebase/firestore';
 import type Menu from '../types/Menu';
 import OrderContext from '../utils/context';
@@ -30,12 +31,14 @@ export const Home: React.FC = () => {
   const [menu, setMenu] = useState([] as Menu[]);
   const [chosenMenu, setChosenMenu] = useState({} as Menu);
   const [showModal, setShowModal] = useState(false);
+  const user = fetchAuth().currentUser;
 
   useEffect(() => {
+    console.log(user);
     getMenu(fetchFirestore())
       .then((res) => setMenu(res))
       .catch((err) => console.error(err));
-  }, []);
+  }, [user]);
 
   const addToCart = (item: Menu) => {
     dispatch({
@@ -56,7 +59,15 @@ export const Home: React.FC = () => {
       <IonPage>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Home</IonTitle>
+            <IonButtons slot="start">
+              <IonButton>Home</IonButton>
+            </IonButtons>
+
+            {user && (
+              <IonButtons slot="end">
+                <IonButton routerLink={routes.admin}>Admin</IonButton>
+              </IonButtons>
+            )}
           </IonToolbar>
         </IonHeader>
 
