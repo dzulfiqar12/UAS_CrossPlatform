@@ -10,15 +10,9 @@ import routes from '../utils/routes';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [present] = useIonToast();
   const history = useHistory();
-
-  const signIn = async () => {
-    login(email, password)
-      .then(() => present('Sign in successful!', 500))
-      .then(() => history.replace(routes.home))
-      .catch((err) => present(err.message, 1000));
-  };
 
   return (
     <IonPage>
@@ -43,7 +37,20 @@ const Login = () => {
             onIonChange={({ detail: { value } }) => setPassword(value!)}
           />
 
-          <IonButton shape="round" fill="solid" className="login_button" onClick={signIn}>
+          <IonButton
+            shape="round"
+            fill="solid"
+            className="login_button"
+            disabled={isLoggingIn}
+            onClick={() => {
+              setIsLoggingIn(true);
+              login(email, password)
+                .then(() => present('Sign in successful!', 500))
+                .then(() => history.replace(routes.home))
+                .catch((err) => present(err.message, 1000))
+                .finally(() => setIsLoggingIn(false));
+            }}
+          >
             Login
           </IonButton>
         </div>
