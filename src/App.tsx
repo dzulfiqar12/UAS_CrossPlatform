@@ -19,6 +19,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 
 import ContextProvider from './components/ContextProvider';
+import Admin from './pages/Admin';
 import Login from './pages/Auth/Login';
 import Home from './pages/Home';
 import routes from './utils/routes';
@@ -30,6 +31,8 @@ const App = () => (
         <IonRouterOutlet>
           <Route exact path={routes.home} component={Home} />
           <Route exact path={routes.login} component={Login} />
+          <Route exact path={routes.admin} component={Admin} />
+
           <Redirect exact from="/" to={routes.home} />
         </IonRouterOutlet>
       </IonReactRouter>
