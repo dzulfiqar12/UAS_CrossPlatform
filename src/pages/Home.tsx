@@ -14,25 +14,20 @@ import {
   IonSegmentButton,
   IonTitle,
   IonToolbar,
-  useIonToast,
 } from '@ionic/react';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ModalSingleMenu from '../components/ModalSingleMenu';
 import { getUser } from '../firebase/auth';
 import { getMenu } from '../firebase/firestore';
 import type Menu from '../types/Menu';
-import OrderContext from '../utils/context';
-import createItemFromMenu from '../utils/createItemFromMenu';
 import routes from '../utils/routes';
 
 export const Home: React.FC = () => {
-  const { dispatch } = useContext(OrderContext);
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
   const [chosenMenu, setChosenMenu] = useState({} as Menu);
   const [showModal, setShowModal] = useState(false);
-  const [present] = useIonToast();
   const user = getUser();
 
   useEffect(() => {
@@ -43,17 +38,6 @@ export const Home: React.FC = () => {
       .then((res) => setMenu(res))
       .catch((err) => console.error(err));
   }, [user]);
-
-  const addToCart = (item: Menu) => {
-    const itemToBeOrdered = createItemFromMenu(item);
-
-    dispatch({
-      type: 'addNewOrderItem',
-      payload: itemToBeOrdered,
-    });
-
-    present(`${item.name} added to cart!`, 500);
-  };
 
   return (
     <>
@@ -115,7 +99,14 @@ export const Home: React.FC = () => {
                     <p>{item.description}</p>
                   </IonLabel>
 
-                  <IonButton onClick={() => addToCart(item)}>Add to Cart</IonButton>
+                  <IonButton
+                    onClick={() => {
+                      setChosenMenu(item);
+                      setShowModal(true);
+                    }}
+                  >
+                    Add to Cart
+                  </IonButton>
                 </IonItem>
               ))}
           </IonList>
