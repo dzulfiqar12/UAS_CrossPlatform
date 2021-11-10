@@ -1,6 +1,6 @@
 import '../styles/Login.css';
 
-import { IonButton, IonContent, IonInput, IonPage } from '@ionic/react';
+import { IonButton, IonContent, IonInput, IonPage, useIonToast } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 
@@ -10,14 +10,9 @@ import routes from '../utils/routes';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [present] = useIonToast();
   const history = useHistory();
-
-  const signIn = async () => {
-    login(email, password)
-      .then(() => console.log('Login success!'))
-      .then(() => history.replace(routes.home))
-      .catch((err) => console.error(err));
-  };
 
   return (
     <IonPage>
@@ -42,7 +37,20 @@ const Login = () => {
             onIonChange={({ detail: { value } }) => setPassword(value!)}
           />
 
-          <IonButton shape="round" fill="solid" className="login_button" onClick={signIn}>
+          <IonButton
+            shape="round"
+            fill="solid"
+            className="login_button"
+            disabled={isLoggingIn}
+            onClick={() => {
+              setIsLoggingIn(true);
+              login(email, password)
+                .then(() => present('Sign in successful!', 500))
+                .then(() => history.replace(routes.home))
+                .catch((err) => present(err.message, 1000))
+                .finally(() => setIsLoggingIn(false));
+            }}
+          >
             Login
           </IonButton>
         </div>

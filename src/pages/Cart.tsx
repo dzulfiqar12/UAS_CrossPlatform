@@ -1,5 +1,5 @@
 import {
-  IonButton,
+  IonBackButton,
   IonButtons,
   IonContent,
   IonHeader,
@@ -14,7 +14,6 @@ import {
 import { useContext } from 'react';
 
 import OrderContext from '../utils/context';
-import routes from '../utils/routes';
 
 const Cart = () => {
   const { state } = useContext(OrderContext);
@@ -23,11 +22,11 @@ const Cart = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Cart</IonTitle>
-
-          <IonButtons slot="end">
-            <IonButton routerLink={routes.home}>Back</IonButton>
+          <IonButtons slot="start">
+            <IonBackButton />
           </IonButtons>
+
+          <IonTitle>Cart</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -40,13 +39,22 @@ const Cart = () => {
           {state.items.map((item) => (
             <IonItem key={item.id}>
               <IonLabel>
-                <h2>{item.name}</h2>
-                <h3>{item.quantity}</h3>
-                <p>{item.price}</p>
+                <h2>Name: {item.name}</h2>
+                <h3>Quantity: {item.quantity}</h3>
+                <h4>Price: {item.price * item.quantity}</h4>
               </IonLabel>
             </IonItem>
           ))}
         </IonList>
+
+        <IonItem lines="none">
+          <p>
+            Price: Rp.{' '}
+            {state.items
+              .reduce((previous, current) => previous + current.price * current.quantity, 0)
+              .toLocaleString('id')}
+          </p>
+        </IonItem>
       </IonContent>
     </IonPage>
   );
