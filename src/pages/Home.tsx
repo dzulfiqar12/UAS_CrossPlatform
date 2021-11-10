@@ -22,12 +22,14 @@ import { fetchFirestore } from '../firebase';
 import { getMenu } from '../firebase/firestore';
 import type Menu from '../types/Menu';
 
-import ModalExample from '../components/ModalExample';
+import ModalExample from '../components/ModalSingleMenu';
 import React, {} from 'react';
+import ModalSingleMenu from '../components/ModalSingleMenu';
 
 export const Home: React.FC = () => {
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
+  const [chosenMenu, setChosenMenu] = useState({} as Menu);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -38,12 +40,8 @@ export const Home: React.FC = () => {
 
   return (
     <>
-    <IonModal isOpen={showModal}>
-       <ModalExample></ModalExample>
-        <IonButton onClick={() => setShowModal(false)}>
-             Close Modal
-         </IonButton>
-        </IonModal>
+    <ModalSingleMenu menu={chosenMenu} isOpen={showModal} setIsOpen={setShowModal} />
+
     <IonPage>
       <IonHeader>
         <IonToolbar>
@@ -77,7 +75,10 @@ export const Home: React.FC = () => {
             .filter((item) => item.category === category)
             .map((item) => (
             
-              <IonItem onClick={() => setShowModal(true)} key={item.id}>
+              <IonItem onClick={() => {
+                setChosenMenu(item);
+                setShowModal(true);
+              }} key={item.id}>
                 <IonAvatar slot="start">
                   <IonImg src={item.photo} alt={`Avatar of ${item.name}`} />
                 </IonAvatar>
