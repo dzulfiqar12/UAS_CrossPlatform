@@ -1,5 +1,7 @@
 import {
   IonAvatar,
+  IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonImg,
@@ -15,67 +17,104 @@ import {
 } from '@ionic/react';
 import { useEffect, useState } from 'react';
 
-import { fetchFirestore } from '../firebase';
+import ModalSingleMenu from '../components/ModalSingleMenu';
+import { getUser } from '../firebase/auth';
 import { getMenu } from '../firebase/firestore';
 import type Menu from '../types/Menu';
+import routes from '../utils/routes';
 
-const Home = () => {
+export const Home: React.FC = () => {
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
+  const [chosenMenu, setChosenMenu] = useState({} as Menu);
+  const [showModal, setShowModal] = useState(false);
+  const user = getUser();
 
   useEffect(() => {
-    getMenu(fetchFirestore())
+    console.log('Currently logged in user:');
+    console.log(user);
+
+    getMenu()
       .then((res) => setMenu(res))
       .catch((err) => console.error(err));
-  }, []);
+  }, [user]);
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Home</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+    <>
+      <ModalSingleMenu menu={chosenMenu} isOpen={showModal} setIsOpen={setShowModal} />
 
-      <IonContent fullscreen>
-        <IonSegment
-          value={category}
-          onIonChange={({ detail: { value } }: CustomEvent) => setCategory(value)}
-        >
-          <IonSegmentButton value="Ala Carte">
-            <IonLabel>Ala Carte</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton value="Paket">
-            <IonLabel>Paket</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton value="Go Home">
-            <IonLabel>Go Home</IonLabel>
-          </IonSegmentButton>
-        </IonSegment>
+      <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonButtons slot="start">
+              <IonButton>Home</IonButton>
+            </IonButtons>
 
-        <IonList>
-          <IonListHeader>
-            <IonTitle>Menu</IonTitle>
-          </IonListHeader>
+            {user && (
+              <IonButtons slot="end">
+                <IonButton routerLink={routes.admin}>Admin</IonButton>
+              </IonButtons>
+            )}
+          </IonToolbar>
+        </IonHeader>
 
-          {menu
-            .filter((item) => item.category === category)
-            .map((item) => (
-              <IonItem key={item.id}>
-                <IonAvatar slot="start">
-                  <IonImg src={item.photo} alt={`Avatar of ${item.name}`} />
-                </IonAvatar>
+        <IonContent fullscreen>
+          <IonSegment
+            value={category}
+            onIonChange={({ detail: { value } }: CustomEvent) => setCategory(value)}
+          >
+            <IonSegmentButton value="Ala Carte">
+              <IonLabel>Ala Carte</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton value="Paket">
+              <IonLabel>Paket</IonLabel>
+            </IonSegmentButton>
+            <IonSegmentButton value="Go Home">
+              <IonLabel>Go Home</IonLabel>
+            </IonSegmentButton>
+          </IonSegment>
 
-                <IonLabel>
-                  <h2>{item.name}</h2>
-                  <h3>{item.category}</h3>
-                  <p>{item.description}</p>
-                </IonLabel>
-              </IonItem>
-            ))}
-        </IonList>
-      </IonContent>
-    </IonPage>
+          <IonList>
+            <IonListHeader>
+              <IonTitle>Menu</IonTitle>
+            </IonListHeader>
+
+            {menu
+              .filter((item) => item.category === category)
+              .map((item) => (
+                <IonItem
+                  onClick={() => {
+                    setChosenMenu(item);
+                    setShowModal(true);
+                  }}
+                  key={item.id}
+                >
+                  <IonAvatar slot="start">
+                    <IonImg src={item.photo} alt={`Avatar of ${item.name}`} />
+                  </IonAvatar>
+
+                  <IonLabel>
+                    <h2>{item.name}</h2>
+                    <h3>{item.category}</h3>
+                    <p>{item.description}</p>
+                  </IonLabel>
+
+                  <IonButton
+                    onClick={() => {
+                      setChosenMenu(item);
+                      setShowModal(true);
+                    }}
+                  >
+                    Add to Cart
+                  </IonButton>
+                </IonItem>
+              ))}
+          </IonList>
+
+          <IonButton routerLink={routes.cart}>Cart</IonButton>
+        </IonContent>
+      </IonPage>
+    </>
   );
 };
 

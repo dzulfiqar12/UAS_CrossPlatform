@@ -1,7 +1,7 @@
 /**
  * A transaction item plus a unique ID as the data identifier in the context.
  */
-type Item = {
+export type Item = {
   id: string;
   name: string;
   price: number;

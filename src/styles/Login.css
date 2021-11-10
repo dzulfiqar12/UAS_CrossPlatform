@@ -1,0 +1,27 @@
+.content {
+  --background: url('../assets/background.jpg') 0 0/100% 100%;
+}
+
+.login_form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+}
+
+.login_form ion-input {
+  background-color: #fffafa;
+  border: solid 1px black;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.login_form .login_button {
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 100%;
+  --background: #f01928;
+}

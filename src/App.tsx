@@ -18,8 +18,12 @@ import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 
+import AuthRoute from './components/AuthRoute';
 import ContextProvider from './components/ContextProvider';
+import Admin from './pages/Admin';
+import Cart from './pages/Cart';
 import Home from './pages/Home';
+import Login from './pages/Login';
 import routes from './utils/routes';
 
 const App = () => (
@@ -28,6 +32,10 @@ const App = () => (
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path={routes.home} component={Home} />
+          <Route exact path={routes.cart} component={Cart} />
+          <Route exact path={routes.login} component={Login} />
+
+          <AuthRoute exact path={routes.admin} component={Admin} />
 
           <Redirect exact from="/" to={routes.home} />
         </IonRouterOutlet>
