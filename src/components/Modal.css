@@ -1,38 +1,38 @@
-.exit-tom{
-   width: 450px;
-   height: 50px;
+.exit-tom {
+  width: 450px;
+  height: 50px;
 }
 
-.gambar-1{
-    display: block;
-    margin: auto;
-    width: 50%;
+.gambar-1 {
+  display: block;
+  margin: auto;
+  width: 50%;
 }
 
-.judul-menu{
-    position: fixed;
-    width: 211px;
-    height: 24px;
-    top: 343px;
+.judul-menu {
+  position: fixed;
+  width: 211px;
+  height: 24px;
+  top: 343px;
 }
 
-.ket-menu1{
-    position: fixed;
-    width: 431px;
-    height: 34px;
-    top: 388px;
+.ket-menu1 {
+  position: fixed;
+  width: 431px;
+  height: 34px;
+  top: 388px;
 }
 
-.ket-menu{
-    position: fixed;
-    width: 150px;
-    height: 74px;
-    top: 448px;
+.ket-menu {
+  position: fixed;
+  width: 150px;
+  height: 74px;
+  top: 448px;
 }
 .button-cart {
-    position: fixed;
-    width: 171px;
-    height: 54px;
-    top: 558px;
-    left: 250px;
+  position: fixed;
+  width: 171px;
+  height: 54px;
+  top: 558px;
+  left: 250px;
 }
