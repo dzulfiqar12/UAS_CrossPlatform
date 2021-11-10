@@ -22,23 +22,27 @@ type Props = {
 
 const ModalSingleMenu = ({ menu, isOpen, setIsOpen }: Props) => {
   return (
-    <IonModal isOpen={isOpen}>
+    <IonModal isOpen={isOpen} onDidDismiss={() => setIsOpen(false)} swipeToClose={true}>
       <IonHeader>
         <IonToolbar>
           <h1>Detail Menu</h1>
+
           <IonButtons slot="end">
             <IonButton onClick={() => setIsOpen(false)}>Back</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
+
       <IonContent>
         <IonItem>
           <p>
             <IonImg className="gambar-1" src={menu.photo} />
           </p>
+
           <h2 className="judul-menu">{menu.name}</h2>
           <h3 className="ket-menu1">{menu.description}</h3>
           <p className="ket-menu">{menu.price}</p>
+
           <IonButton shape="round" className="button-cart">
             Add to Cart
           </IonButton>
