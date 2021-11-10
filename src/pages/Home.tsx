@@ -14,8 +14,8 @@ import {
   IonSegmentButton,
   IonTitle,
   IonToolbar,
+  useIonToast,
 } from '@ionic/react';
-import { nanoid } from 'nanoid';
 import { useContext, useEffect, useState } from 'react';
 
 import ModalSingleMenu from '../components/ModalSingleMenu';
@@ -23,6 +23,7 @@ import { getUser } from '../firebase/auth';
 import { getMenu } from '../firebase/firestore';
 import type Menu from '../types/Menu';
 import OrderContext from '../utils/context';
+import createItemFromMenu from '../utils/createItemFromMenu';
 import routes from '../utils/routes';
 
 export const Home: React.FC = () => {
@@ -31,6 +32,7 @@ export const Home: React.FC = () => {
   const [menu, setMenu] = useState([] as Menu[]);
   const [chosenMenu, setChosenMenu] = useState({} as Menu);
   const [showModal, setShowModal] = useState(false);
+  const [present] = useIonToast();
   const user = getUser();
 
   useEffect(() => {
@@ -43,15 +45,14 @@ export const Home: React.FC = () => {
   }, [user]);
 
   const addToCart = (item: Menu) => {
+    const itemToBeOrdered = createItemFromMenu(item);
+
     dispatch({
       type: 'addNewOrderItem',
-      payload: {
-        id: nanoid().toString(),
-        name: item.name,
-        price: item.price,
-        quantity: 1,
-      },
+      payload: itemToBeOrdered,
     });
+
+    present(`${item.name} added to cart!`, 500);
   };
 
   return (
@@ -112,9 +113,9 @@ export const Home: React.FC = () => {
                     <h2>{item.name}</h2>
                     <h3>{item.category}</h3>
                     <p>{item.description}</p>
-
-                    <IonButton onClick={() => addToCart(item)}>Add to Cart</IonButton>
                   </IonLabel>
+
+                  <IonButton onClick={() => addToCart(item)}>Add to Cart</IonButton>
                 </IonItem>
               ))}
           </IonList>
