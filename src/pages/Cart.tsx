@@ -27,7 +27,7 @@ const Cart = () => {
       <IonContent fullscreen>
         <IonList>
           <IonListHeader>
-            <IonTitle>Menu</IonTitle>
+            <IonTitle>Orders</IonTitle>
           </IonListHeader>
 
           {state.items.map((item) => (

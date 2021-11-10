@@ -14,14 +14,18 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid';
+import { useContext, useEffect, useState } from 'react';
 
 import ModalSingleMenu from '../components/ModalSingleMenu';
 import { fetchFirestore } from '../firebase';
 import { getMenu } from '../firebase/firestore';
 import type Menu from '../types/Menu';
+import OrderContext from '../utils/context';
+import routes from '../utils/routes';
 
 export const Home: React.FC = () => {
+  const { dispatch } = useContext(OrderContext);
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
   const [chosenMenu, setChosenMenu] = useState({} as Menu);
@@ -32,6 +36,18 @@ export const Home: React.FC = () => {
       .then((res) => setMenu(res))
       .catch((err) => console.error(err));
   }, []);
+
+  const addToCart = (item: Menu) => {
+    dispatch({
+      type: 'addNewOrderItem',
+      payload: {
+        id: nanoid().toString(),
+        name: item.name,
+        price: item.price,
+        quantity: 1,
+      },
+    });
+  };
 
   return (
     <>
@@ -78,17 +94,19 @@ export const Home: React.FC = () => {
                   <IonAvatar slot="start">
                     <IonImg src={item.photo} alt={`Avatar of ${item.name}`} />
                   </IonAvatar>
+
                   <IonLabel>
                     <h2>{item.name}</h2>
                     <h3>{item.category}</h3>
                     <p>{item.description}</p>
-                    <IonButton>Add to Cart</IonButton>
+
+                    <IonButton onClick={() => addToCart(item)}>Add to Cart</IonButton>
                   </IonLabel>
                 </IonItem>
               ))}
           </IonList>
 
-          <IonButton routerLink="/cart">Cart</IonButton>
+          <IonButton routerLink={routes.cart}>Cart</IonButton>
         </IonContent>
       </IonPage>
     </>
