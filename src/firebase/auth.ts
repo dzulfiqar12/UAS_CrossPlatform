@@ -17,7 +17,6 @@ const AuthError = new Error('Firebase Auth has encountered an error. Please try 
  *
  * @param username - Username that is inputted
  * @param password - A user's password
- * @param dispatch - Setter to modify the context
  */
 export const login = async (username: string, password: string) => {
   const completeEmail = `${username}@ayam-bebek-pak-boss.com`;
@@ -42,6 +41,5 @@ export const logout = async () => {
 
 /**
  * Gets the current user.
- *
  */
 export const getUser = () => auth.currentUser;
