@@ -39,13 +39,22 @@ const Cart = () => {
           {state.items.map((item) => (
             <IonItem key={item.id}>
               <IonLabel>
-                <h2>{item.name}</h2>
-                <h3>{item.quantity}</h3>
-                <p>{item.price}</p>
+                <h2>Name: {item.name}</h2>
+                <h3>Quantity: {item.quantity}</h3>
+                <h4>Price: {item.price * item.quantity}</h4>
               </IonLabel>
             </IonItem>
           ))}
         </IonList>
+
+        <IonItem lines="none">
+          <p>
+            Price: Rp.{' '}
+            {state.items
+              .reduce((previous, current) => previous + current.price * current.quantity, 0)
+              .toLocaleString('id')}
+          </p>
+        </IonItem>
       </IonContent>
     </IonPage>
   );
