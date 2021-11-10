@@ -16,7 +16,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import { cartSharp, personCircleSharp } from 'ionicons/icons';
+import { cartSharp, keySharp, personCircleSharp } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 
 import ModalSingleMenu from '../components/ModalSingleMenu';
@@ -57,9 +57,13 @@ export const Home: React.FC = () => {
                 <IonIcon slot="icon-only" icon={cartSharp} />
               </IonButton>
 
-              {user && (
+              {user ? (
                 <IonButton slot="icon-only" routerLink={routes.admin}>
                   <IonIcon slot="icon-only" icon={personCircleSharp} />
+                </IonButton>
+              ) : (
+                <IonButton slot="icon-only" routerLink={routes.login}>
+                  <IonIcon slot="icon-only" icon={keySharp} />
                 </IonButton>
               )}
             </IonButtons>
