@@ -1,15 +1,26 @@
-import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  useIonToast,
+} from '@ionic/react';
 import { useHistory } from 'react-router';
 
 import { getUser, logout } from '../firebase/auth';
 import routes from '../utils/routes';
 
 const Admin = () => {
+  const [present] = useIonToast();
   const history = useHistory();
 
   const signOut = () => {
     logout()
-      .then(() => console.log('Logged out successfully!'))
+      .then(() => present('Logged out successfully!', 500))
       .then(() => history.replace(routes.home))
       .catch((err) => console.error(err));
   };
@@ -18,11 +29,15 @@ const Admin = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton />
+          </IonButtons>
+
           <IonTitle>Admin</IonTitle>
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
+      <IonContent className="ion-padding">
         <p>Admin Ganteng</p>
         <p>Current user: {JSON.stringify(getUser())}</p>
 

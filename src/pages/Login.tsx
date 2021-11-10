@@ -1,6 +1,6 @@
 import '../styles/Login.css';
 
-import { IonButton, IonContent, IonInput, IonPage } from '@ionic/react';
+import { IonButton, IonContent, IonInput, IonPage, useIonToast } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 
@@ -10,13 +10,14 @@ import routes from '../utils/routes';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [present] = useIonToast();
   const history = useHistory();
 
   const signIn = async () => {
     login(email, password)
-      .then(() => console.log('Login success!'))
+      .then(() => present('Sign in successful!', 500))
       .then(() => history.replace(routes.home))
-      .catch((err) => console.error(err));
+      .catch((err) => present(err.message, 1000));
   };
 
   return (

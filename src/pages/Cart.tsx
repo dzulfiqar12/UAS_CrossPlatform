@@ -1,5 +1,5 @@
 import {
-  IonButton,
+  IonBackButton,
   IonButtons,
   IonContent,
   IonHeader,
@@ -14,7 +14,6 @@ import {
 import { useContext } from 'react';
 
 import OrderContext from '../utils/context';
-import routes from '../utils/routes';
 
 const Cart = () => {
   const { state } = useContext(OrderContext);
@@ -23,11 +22,11 @@ const Cart = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Cart</IonTitle>
-
-          <IonButtons slot="end">
-            <IonButton routerLink={routes.home}>Back</IonButton>
+          <IonButtons slot="start">
+            <IonBackButton />
           </IonButtons>
+
+          <IonTitle>Cart</IonTitle>
         </IonToolbar>
       </IonHeader>
 
