@@ -29,7 +29,7 @@ const App = () => (
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path={routes.home} component={Home} />
-          <Route exact path="/cart" component={Cart} />
+          <Route exact path={routes.cart} component={Cart} />
           <Redirect exact from="/" to={routes.home} />
         </IonRouterOutlet>
       </IonReactRouter>

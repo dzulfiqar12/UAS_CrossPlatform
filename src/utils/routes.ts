@@ -3,6 +3,7 @@
  */
 const routes = {
   home: '/app/home',
+  cart: '/app/cart',
 } as const;
 
 export default routes;
