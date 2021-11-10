@@ -20,9 +20,9 @@ import { Redirect, Route } from 'react-router-dom';
 
 import ContextProvider from './components/ContextProvider';
 import Admin from './pages/Admin';
-import Login from './pages/Auth/Login';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
+import Login from './pages/Login';
 import routes from './utils/routes';
 
 const App = () => (

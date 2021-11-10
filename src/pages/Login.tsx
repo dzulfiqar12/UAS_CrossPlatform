@@ -1,11 +1,11 @@
-import './css/login.css';
+import '../styles/Login.css';
 
 import { IonButton, IonContent, IonInput, IonPage } from '@ionic/react';
 import { useRef } from 'react';
 import { useHistory } from 'react-router';
 
-import { login } from '../../firebase/auth';
-import routes from '../../utils/routes';
+import { login } from '../firebase/auth';
+import routes from '../utils/routes';
 
 const Logins = () => {
   const emailRef = useRef<HTMLIonInputElement>(null);
