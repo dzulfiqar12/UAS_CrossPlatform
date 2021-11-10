@@ -19,7 +19,7 @@ import { nanoid } from 'nanoid';
 import { useContext, useEffect, useState } from 'react';
 
 import ModalSingleMenu from '../components/ModalSingleMenu';
-import { fetchAuth, fetchFirestore } from '../firebase';
+import { getUser } from '../firebase/auth';
 import { getMenu } from '../firebase/firestore';
 import type Menu from '../types/Menu';
 import OrderContext from '../utils/context';
@@ -31,11 +31,13 @@ export const Home: React.FC = () => {
   const [menu, setMenu] = useState([] as Menu[]);
   const [chosenMenu, setChosenMenu] = useState({} as Menu);
   const [showModal, setShowModal] = useState(false);
-  const user = fetchAuth().currentUser;
+  const user = getUser();
 
   useEffect(() => {
+    console.log('Currently logged in user:');
     console.log(user);
-    getMenu(fetchFirestore())
+
+    getMenu()
       .then((res) => setMenu(res))
       .catch((err) => console.error(err));
   }, [user]);

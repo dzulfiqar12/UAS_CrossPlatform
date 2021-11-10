@@ -4,7 +4,6 @@ import { IonButton, IonContent, IonInput, IonPage } from '@ionic/react';
 import { useRef } from 'react';
 import { useHistory } from 'react-router';
 
-import { fetchAuth } from '../../firebase';
 import { login } from '../../firebase/auth';
 import routes from '../../utils/routes';
 
@@ -17,7 +16,7 @@ const Logins = () => {
     const enteredEmail = emailRef.current!.value as string;
     const enteredPassword = passwordRef.current!.value as string;
 
-    login(fetchAuth(), enteredEmail, enteredPassword)
+    login(enteredEmail, enteredPassword)
       .then(() => console.log('Login success!'))
       .then(() => history.replace(routes.home))
       .catch((err) => console.error(err));
