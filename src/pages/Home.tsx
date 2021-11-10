@@ -1,5 +1,7 @@
 import {
   IonAvatar,
+  IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonImg,
@@ -15,25 +17,36 @@ import {
 } from '@ionic/react';
 import { useEffect, useState } from 'react';
 
-import { fetchFirestore } from '../firebase';
+import { fetchAuth, fetchFirestore } from '../firebase';
 import { getMenu } from '../firebase/firestore';
 import type Menu from '../types/Menu';
+import routes from '../utils/routes';
 
 const Home = () => {
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
+  const user = fetchAuth().currentUser;
 
   useEffect(() => {
+    console.log(user);
     getMenu(fetchFirestore())
       .then((res) => setMenu(res))
       .catch((err) => console.error(err));
-  }, []);
+  }, [user]);
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Home</IonTitle>
+          <IonButtons slot="start">
+            <IonButton>Home</IonButton>
+          </IonButtons>
+
+          {user && (
+            <IonButtons slot="end">
+              <IonButton routerLink={routes.admin}>Admin</IonButton>
+            </IonButtons>
+          )}
         </IonToolbar>
       </IonHeader>
 
