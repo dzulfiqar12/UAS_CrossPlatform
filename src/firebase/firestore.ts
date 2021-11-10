@@ -1,16 +1,13 @@
-import {
-  collection,
-  deleteDoc,
-  doc,
-  Firestore,
-  getDocs,
-  orderBy,
-  query,
-  updateDoc,
-} from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from 'firebase/firestore';
 
 import type Menu from '../types/Menu';
 import type Transaction from '../types/Transaction';
+import { fetchFirestore } from '.';
+
+/**
+ * Global Firestore call.
+ */
+const db = fetchFirestore();
 
 /**
  * Global error constant, give out generic error.
@@ -20,10 +17,9 @@ const FirestoreError = new Error('Firestore has encountered an error. Please try
 /**
  * Gets all menu from the database.
  *
- * @param db - Firestore instance
  * @returns All menus from the database
  */
-export const getMenu = async (db: Firestore) => {
+export const getMenu = async () => {
   const allMenu: Menu[] = [];
 
   try {
@@ -40,12 +36,11 @@ export const getMenu = async (db: Firestore) => {
 /**
  * Updates a single menu based on its ID.
  *
- * @param db - Firestore instance
  * @param id - The menu ID
  * @param data - Partial object: 'Menu' object to be used to update a single menu
  * @returns Boolean value of success
  */
-export const updateMenu = async (db: Firestore, id: string, data: Partial<Menu>) => {
+export const updateMenu = async (id: string, data: Partial<Menu>) => {
   const ref = doc(db, 'menu', id);
 
   try {
@@ -60,11 +55,10 @@ export const updateMenu = async (db: Firestore, id: string, data: Partial<Menu>)
 /**
  * Deletes a single menu based on its ID.
  *
- * @param db - Firestore instance
  * @param id - An ID of the document to be deleted
  * @returns Boolean value of success
  */
-export const deleteMenu = async (db: Firestore, id: string) => {
+export const deleteMenu = async (id: string) => {
   const ref = doc(db, 'menu', id);
 
   try {
@@ -79,10 +73,9 @@ export const deleteMenu = async (db: Firestore, id: string) => {
 /**
  * Gets all transactions from the database.
  *
- * @param db - Firestore instance
  * @returns All transactions from the database
  */
-export const getTransactions = async (db: Firestore) => {
+export const getTransactions = async () => {
   const allTransactions: Transaction[] = [];
 
   try {
