@@ -16,6 +16,7 @@ const createItemFromMenu = (menu: Menu, quantity: number): Item => {
 
   return {
     id: orderItemId,
+    menuId: menu.id,
     name: menu.name,
     price: menu.price,
     quantity: quantity,

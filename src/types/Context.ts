@@ -3,6 +3,7 @@
  */
 export type Item = {
   id: string;
+  menuId: string;
   name: string;
   price: number;
   quantity: number;
