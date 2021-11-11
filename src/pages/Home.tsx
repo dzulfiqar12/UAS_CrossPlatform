@@ -17,15 +17,17 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import { cartSharp, keySharp, personCircleSharp } from 'ionicons/icons';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import ModalSingleMenu from '../components/ModalSingleMenu';
 import { getUser } from '../firebase/auth';
 import { getMenu } from '../firebase/firestore';
 import type Menu from '../types/Menu';
+import OrderContext from '../utils/context';
 import routes from '../utils/routes';
 
 export const Home: React.FC = () => {
+  const { state } = useContext(OrderContext);
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
   const [chosenMenu, setChosenMenu] = useState({} as Menu);
@@ -34,7 +36,7 @@ export const Home: React.FC = () => {
 
   useEffect(() => {
     console.log('Currently logged in user:');
-    console.log(user);
+    console.log(getUser());
 
     getMenu()
       .then((res) => setMenu(res))
@@ -109,16 +111,35 @@ export const Home: React.FC = () => {
                     <h2>{item.name}</h2>
                     <h3>{item.category}</h3>
                     <p>{item.description}</p>
-                  </IonLabel>
 
-                  <IonButton
-                    onClick={() => {
-                      setChosenMenu(item);
-                      setShowModal(true);
-                    }}
-                  >
-                    Add to Cart
-                  </IonButton>
+                    {(() => {
+                      const orderedItem = state.items.find((o) => o.menuId === item.id);
+
+                      if (!orderedItem) {
+                        return (
+                          <IonButton
+                            onClick={() => {
+                              setChosenMenu(item);
+                              setShowModal(true);
+                            }}
+                          >
+                            Add to Cart
+                          </IonButton>
+                        );
+                      }
+
+                      return (
+                        <IonButton
+                          onClick={() => {
+                            setChosenMenu(item);
+                            setShowModal(true);
+                          }}
+                        >
+                          Ordered: {orderedItem.quantity}
+                        </IonButton>
+                      );
+                    })()}
+                  </IonLabel>
                 </IonItem>
               ))}
           </IonList>

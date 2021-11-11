@@ -12,9 +12,22 @@ import { DefaultContext } from './context';
 const reducer = (state: Context, action: Action): Context => {
   switch (action.type) {
     case 'addNewOrderItem':
+      // Try to find if there is any existing menu in our Order context.
+      // If there is no duplicate, then we will concat them to the resulting state.
+      const duplicateIdx = state.items.findIndex((item) => item.menuId === action.payload.menuId);
+      if (duplicateIdx === -1) {
+        return {
+          ...state,
+          items: [...state.items, action.payload],
+        };
+      }
+
+      // If there is a duplicate, create a hard copy of the array, and modify its previous quantity with the new one.
+      const modifiedOrder = state.items.slice();
+      modifiedOrder[duplicateIdx].quantity = action.payload.quantity;
       return {
         ...state,
-        items: [...state.items, action.payload],
+        items: modifiedOrder,
       };
 
     case 'deleteOrderItem':
@@ -42,7 +55,7 @@ const reducer = (state: Context, action: Action): Context => {
       };
 
     case 'setOrderItemQuantity':
-      const modifiedItem = state.items;
+      const modifiedItem = state.items.slice();
       const modifiedIndex = state.items.findIndex((item) => item.id === action.payload.id);
       modifiedItem[modifiedIndex].quantity = action.payload.newQuantity;
 
