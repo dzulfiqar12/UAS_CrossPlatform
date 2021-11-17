@@ -15,6 +15,7 @@ import {
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 
+import AllMenu from '../components/Admin/AllMenu';
 import HistoryTransactions from '../components/Admin/HistoryTransactions';
 import InProgressTransactions from '../components/Admin/InProgressTransactions';
 import { logout } from '../firebase/auth';
@@ -52,7 +53,7 @@ const Admin = () => {
           onIonChange={({ detail: { value } }: CustomEvent) => setCategory(value)}
         >
           <IonSegmentButton value="In Progress">
-            <IonLabel>In Progress</IonLabel>
+            <IonLabel>Progress</IonLabel>
           </IonSegmentButton>
           <IonSegmentButton value="Transactions">
             <IonLabel>Transactions</IonLabel>
@@ -71,7 +72,7 @@ const Admin = () => {
             return <HistoryTransactions />;
           }
 
-          return null;
+          return <AllMenu />;
         })()}
 
         <IonButton onClick={signOut}>Logout</IonButton>
