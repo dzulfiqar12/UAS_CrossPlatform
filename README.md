@@ -56,8 +56,13 @@ npm run migrate
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
+    match /menu/{item} {
       allow write: if request.auth != null;
+      allow read;
+    }
+
+    match /transactions/{transaction} {
+      allow create;
       allow read;
     }
   }
