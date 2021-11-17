@@ -50,6 +50,34 @@ npm i
 npm run migrate
 ```
 
+- Do not forget to set security rules for Firebase Firestore.
+
+```bash
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow write: if request.auth != null;
+      allow read;
+    }
+  }
+}
+```
+
+- Do not forget to set security rules for Firebase Cloud Storage.
+
+```bash
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow write: if request.auth != null;
+      allow read;
+    }
+  }
+}
+```
+
 - Ask the author for the credentials for the Firebase Authentication user in order to implement the login system. You may have to create one user if it does not exist yet.
 
 - Run this application in development mode.
