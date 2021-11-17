@@ -53,7 +53,40 @@ const Cart = () => {
             <IonItem key={item.id}>
               <IonLabel>
                 <h2>Name: {item.name}</h2>
+
                 <h3>Quantity: {item.quantity}</h3>
+                <IonButton
+                  onClick={() =>
+                    dispatch({
+                      type: 'setOrderItemQuantity',
+                      payload: {
+                        id: item.id,
+                        newQuantity: item.quantity + 1,
+                      },
+                    })
+                  }
+                >
+                  +
+                </IonButton>
+
+                <IonButton
+                  onClick={() => {
+                    if (item.quantity - 1 === 0) {
+                      return;
+                    }
+
+                    dispatch({
+                      type: 'setOrderItemQuantity',
+                      payload: {
+                        id: item.id,
+                        newQuantity: item.quantity - 1,
+                      },
+                    });
+                  }}
+                >
+                  -
+                </IonButton>
+
                 <h4>Price: {item.price * item.quantity}</h4>
               </IonLabel>
 
