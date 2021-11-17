@@ -43,6 +43,19 @@ export const getMenu = async () => {
 };
 
 /**
+ * Creates a new menu.
+ *
+ * @param menu - New menu to be added
+ */
+export const createMenu = async (menu: Menu) => {
+  try {
+    await setDoc(doc(db, 'menu', menu.id), menu);
+  } catch {
+    throw FirestoreError;
+  }
+};
+
+/**
  * Updates a single menu based on its ID.
  *
  * @param id - The menu ID
