@@ -1,11 +1,17 @@
 import {
   IonButton,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
   IonInput,
   IonItem,
   IonLabel,
-  IonList,
-  IonListHeader,
   IonModal,
+  IonRow,
+  IonText,
+  IonTitle,
+  IonToolbar,
 } from '@ionic/react';
 import { Dispatch, SetStateAction, useContext } from 'react';
 
@@ -20,38 +26,65 @@ const ModalCustomerInfo = ({ isOpen, setIsOpen }: Props) => {
   const { state, dispatch } = useContext(OrderContext);
 
   return (
-    <IonModal isOpen={isOpen}>
-      <IonList lines="full" class="ion-no-margin">
-        <IonListHeader lines="full">
-          <IonLabel>Information</IonLabel>
-        </IonListHeader>
+    <IonModal isOpen={isOpen} swipeToClose={false} backdropDismiss={false}>
+      <IonHeader translucent>
+        <IonToolbar>
+          <IonTitle>Customer Information</IonTitle>
+        </IonToolbar>
+      </IonHeader>
 
-        <IonItem>
-          <IonLabel position="floating">Customer Name</IonLabel>
-          <IonInput
-            type="text"
-            value={state.customerName}
-            onIonChange={({ detail: { value } }) =>
-              dispatch({ type: 'setCustomerName', payload: value as string })
-            }
-            placeholder="Your name..."
-          />
-        </IonItem>
+      <IonContent fullscreen>
+        <IonGrid className="ion-padding">
+          <IonRow>
+            <IonCol className="ion-text-center">
+              <IonText>
+                <p style={{ fontSize: '14px' }}>
+                  Please fill your information before using this app!
+                </p>
+              </IonText>
+            </IonCol>
+          </IonRow>
 
-        <IonItem>
-          <IonLabel position="floating">Table number</IonLabel>
-          <IonInput
-            type="text"
-            value={state.tableName}
-            onIonChange={({ detail: { value } }) =>
-              dispatch({ type: 'setTableName', payload: value as string })
-            }
-            placeholder="Your table number..."
-          />
-        </IonItem>
+          <IonRow>
+            <IonCol>
+              <IonItem>
+                <IonLabel position="stacked">Customer name</IonLabel>
+                <IonInput
+                  type="text"
+                  value={state.customerName}
+                  onIonChange={({ detail: { value } }) =>
+                    dispatch({ type: 'setCustomerName', payload: value as string })
+                  }
+                />
+              </IonItem>
 
-        <IonButton onClick={() => setIsOpen(false)}>Close</IonButton>
-      </IonList>
+              <IonItem>
+                <IonLabel position="stacked">Table name</IonLabel>
+                <IonInput
+                  type="text"
+                  value={state.tableName}
+                  onIonChange={({ detail: { value } }) =>
+                    dispatch({ type: 'setTableName', payload: value as string })
+                  }
+                />
+              </IonItem>
+            </IonCol>
+          </IonRow>
+
+          <IonRow>
+            <IonCol>
+              <IonButton
+                expand="block"
+                fill="outline"
+                disabled={state.customerName === '' || state.tableName === ''}
+                onClick={() => setIsOpen(false)}
+              >
+                Set data
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonContent>
     </IonModal>
   );
 };
