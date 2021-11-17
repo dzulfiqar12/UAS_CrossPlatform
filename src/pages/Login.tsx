@@ -46,7 +46,7 @@ const Login = () => {
               setIsLoggingIn(true);
               login(email, password)
                 .then(() => present('Sign in successful!', 500))
-                .then(() => history.replace(routes.home))
+                .then(() => history.replace(routes.admin))
                 .catch((err) => present(err.message, 1000))
                 .finally(() => setIsLoggingIn(false));
             }}
