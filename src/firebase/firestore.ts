@@ -1,4 +1,13 @@
-import { collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
 
 import type Menu from '../types/Menu';
 import type Transaction from '../types/Transaction';
@@ -87,4 +96,32 @@ export const getTransactions = async () => {
   }
 
   return allTransactions;
+};
+
+/**
+ * Creates a new transaction.
+ *
+ * @param newTransaction - New transaction
+ */
+export const createTransaction = async (newTransaction: Transaction) => {
+  try {
+    await setDoc(doc(db, 'transactions', newTransaction.id), newTransaction);
+  } catch {
+    throw FirestoreError;
+  }
+};
+
+/**
+ * Accepts a new transaction.
+ *
+ * @param transactionId - Transaction ID
+ */
+export const acceptTransaction = async (transactionId: string) => {
+  const ref = doc(db, 'transactions', transactionId);
+
+  try {
+    await updateDoc(ref, { status: 'Finished' });
+  } catch {
+    throw FirestoreError;
+  }
 };
