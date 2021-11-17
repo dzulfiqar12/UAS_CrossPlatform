@@ -43,6 +43,19 @@ export const getMenu = async () => {
 };
 
 /**
+ * Creates a new menu.
+ *
+ * @param menu - New menu to be added
+ */
+export const createMenu = async (menu: Menu) => {
+  try {
+    await setDoc(doc(db, 'menu', menu.id), menu);
+  } catch {
+    throw FirestoreError;
+  }
+};
+
+/**
  * Updates a single menu based on its ID.
  *
  * @param id - The menu ID
@@ -82,13 +95,14 @@ export const deleteMenu = async (id: string) => {
 /**
  * Gets all transactions from the database.
  *
+ * @param sortDirection - Sort direction
  * @returns All transactions from the database
  */
-export const getTransactions = async () => {
+export const getTransactions = async (sortDirection: 'asc' | 'desc') => {
   const allTransactions: Transaction[] = [];
 
   try {
-    const q = query(collection(db, 'transactions'), orderBy('created'));
+    const q = query(collection(db, 'transactions'), orderBy('created', sortDirection));
     const snapshots = await getDocs(q);
     snapshots.forEach((doc) => allTransactions.push(doc.data() as Transaction));
   } catch {

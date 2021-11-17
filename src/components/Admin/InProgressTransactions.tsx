@@ -17,13 +17,13 @@ const InProgressTransactions = () => {
   const [present] = useIonToast();
 
   const fetchTransactionsInApp = useCallback(() => {
-    getTransactions()
+    getTransactions('asc')
       .then((res) => setTransactions(res))
       .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
-    getTransactions()
+    getTransactions('asc')
       .then((res) => setTransactions(res))
       .catch((err) => console.error(err));
   }, []);

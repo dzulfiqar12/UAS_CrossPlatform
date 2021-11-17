@@ -8,6 +8,7 @@ import {
   IonPage,
   IonSegment,
   IonSegmentButton,
+  IonText,
   IonTitle,
   IonToolbar,
   useIonToast,
@@ -15,6 +16,7 @@ import {
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 
+import AllMenu from '../components/Admin/AllMenu';
 import HistoryTransactions from '../components/Admin/HistoryTransactions';
 import InProgressTransactions from '../components/Admin/InProgressTransactions';
 import { logout } from '../firebase/auth';
@@ -42,6 +44,12 @@ const Admin = () => {
             <IonBackButton />
           </IonButtons>
 
+          <IonButtons slot="end">
+            <IonButton slot="icon-only" onClick={signOut}>
+              <IonText>Logout</IonText>
+            </IonButton>
+          </IonButtons>
+
           <IonTitle>Admin</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -52,7 +60,7 @@ const Admin = () => {
           onIonChange={({ detail: { value } }: CustomEvent) => setCategory(value)}
         >
           <IonSegmentButton value="In Progress">
-            <IonLabel>In Progress</IonLabel>
+            <IonLabel>Progress</IonLabel>
           </IonSegmentButton>
           <IonSegmentButton value="Transactions">
             <IonLabel>Transactions</IonLabel>
@@ -71,10 +79,8 @@ const Admin = () => {
             return <HistoryTransactions />;
           }
 
-          return null;
+          return <AllMenu />;
         })()}
-
-        <IonButton onClick={signOut}>Logout</IonButton>
       </IonContent>
     </IonPage>
   );
