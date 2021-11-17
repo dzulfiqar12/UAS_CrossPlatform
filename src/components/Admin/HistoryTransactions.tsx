@@ -8,7 +8,7 @@ const HistoryTransactions = () => {
   const [transactions, setTransactions] = useState([] as Transaction[]);
 
   useEffect(() => {
-    getTransactions()
+    getTransactions('desc')
       .then((res) => setTransactions(res))
       .catch((err) => console.error(err));
   }, []);

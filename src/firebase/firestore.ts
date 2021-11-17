@@ -95,13 +95,14 @@ export const deleteMenu = async (id: string) => {
 /**
  * Gets all transactions from the database.
  *
+ * @param sortDirection - Sort direction
  * @returns All transactions from the database
  */
-export const getTransactions = async () => {
+export const getTransactions = async (sortDirection: 'asc' | 'desc') => {
   const allTransactions: Transaction[] = [];
 
   try {
-    const q = query(collection(db, 'transactions'), orderBy('created'));
+    const q = query(collection(db, 'transactions'), orderBy('created', sortDirection));
     const snapshots = await getDocs(q);
     snapshots.forEach((doc) => allTransactions.push(doc.data() as Transaction));
   } catch {
