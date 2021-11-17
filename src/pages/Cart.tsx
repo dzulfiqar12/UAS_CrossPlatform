@@ -15,14 +15,21 @@ import {
   IonTitle,
   IonToolbar,
   useIonActionSheet,
+  useIonToast,
 } from '@ionic/react';
 import { useContext } from 'react';
+import { useHistory } from 'react-router';
 
+import { createTransaction } from '../firebase/firestore';
 import OrderContext from '../utils/context';
+import createOrderFromContext from '../utils/createOrderFromContext';
+import routes from '../utils/routes';
 
 const Cart = () => {
   const { state, dispatch } = useContext(OrderContext);
+  const history = useHistory();
   const [present, dismiss] = useIonActionSheet();
+  const [presentToast] = useIonToast();
 
   return (
     <IonPage>
@@ -71,7 +78,20 @@ const Cart = () => {
 
           <IonRow>
             <IonCol>
-              <IonButton expand="block" disabled={state.items.length === 0}>
+              <IonButton
+                expand="block"
+                disabled={state.items.length === 0}
+                onClick={() => {
+                  const newOrder = createOrderFromContext(state);
+                  createTransaction(newOrder)
+                    .then(() => {
+                      presentToast('You have ordered a new item!', 500);
+                      dispatch({ type: 'deleteOrderItems', payload: null });
+                      history.replace(routes.home);
+                    })
+                    .catch((err) => presentToast(err, 1000));
+                }}
+              >
                 Order
               </IonButton>
             </IonCol>

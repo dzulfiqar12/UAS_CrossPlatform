@@ -16,9 +16,10 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import { cartSharp, keySharp, personCircleSharp } from 'ionicons/icons';
+import { cartSharp, informationSharp, keySharp, personCircleSharp } from 'ionicons/icons';
 import { useContext, useEffect, useState } from 'react';
 
+import ModalCustomerInfo from '../components/ModalCustomerInfo';
 import ModalSingleMenu from '../components/ModalSingleMenu';
 import { getUser } from '../firebase/auth';
 import { getMenu } from '../firebase/firestore';
@@ -31,21 +32,24 @@ export const Home: React.FC = () => {
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
   const [chosenMenu, setChosenMenu] = useState({} as Menu);
-  const [showModal, setShowModal] = useState(false);
+  const [showMenuModal, setShowMenuModal] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(true);
   const user = getUser();
 
   useEffect(() => {
     console.log('Currently logged in user:');
     console.log(getUser());
+    console.log(state);
 
     getMenu()
       .then((res) => setMenu(res))
       .catch((err) => console.error(err));
-  }, [user]);
+  }, [user, state]);
 
   return (
     <>
-      <ModalSingleMenu menu={chosenMenu} isOpen={showModal} setIsOpen={setShowModal} />
+      <ModalSingleMenu menu={chosenMenu} isOpen={showMenuModal} setIsOpen={setShowMenuModal} />
+      <ModalCustomerInfo isOpen={showInfoModal} setIsOpen={setShowInfoModal} />
 
       <IonPage>
         <IonHeader>
@@ -57,6 +61,9 @@ export const Home: React.FC = () => {
             <IonButtons slot="end">
               <IonButton slot="icon-only" routerLink={routes.cart}>
                 <IonIcon slot="icon-only" icon={cartSharp} />
+              </IonButton>
+              <IonButton slot="icon-only" onClick={() => setShowInfoModal(true)}>
+                <IonIcon slot="icon-only" icon={informationSharp} />
               </IonButton>
 
               {user ? (
@@ -99,7 +106,7 @@ export const Home: React.FC = () => {
                 <IonItem
                   onClick={() => {
                     setChosenMenu(item);
-                    setShowModal(true);
+                    setShowMenuModal(true);
                   }}
                   key={item.id}
                 >
@@ -120,7 +127,7 @@ export const Home: React.FC = () => {
                           <IonButton
                             onClick={() => {
                               setChosenMenu(item);
-                              setShowModal(true);
+                              setShowMenuModal(true);
                             }}
                           >
                             Add to Cart
@@ -132,7 +139,7 @@ export const Home: React.FC = () => {
                         <IonButton
                           onClick={() => {
                             setChosenMenu(item);
-                            setShowModal(true);
+                            setShowMenuModal(true);
                           }}
                         >
                           Ordered: {orderedItem.quantity}

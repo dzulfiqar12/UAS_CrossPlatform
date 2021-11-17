@@ -4,17 +4,26 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonLabel,
   IonPage,
+  IonSegment,
+  IonSegmentButton,
   IonTitle,
   IonToolbar,
   useIonToast,
 } from '@ionic/react';
+import { useState } from 'react';
 import { useHistory } from 'react-router';
 
-import { getUser, logout } from '../firebase/auth';
+import HistoryTransactions from '../components/Admin/HistoryTransactions';
+import InProgressTransactions from '../components/Admin/InProgressTransactions';
+import { logout } from '../firebase/auth';
 import routes from '../utils/routes';
 
 const Admin = () => {
+  const [category, setCategory] = useState(
+    'In Progress' as 'In Progress' | 'Transactions' | 'Menu'
+  );
   const [present] = useIonToast();
   const history = useHistory();
 
@@ -38,8 +47,32 @@ const Admin = () => {
       </IonHeader>
 
       <IonContent className="ion-padding">
-        <p>Admin Ganteng</p>
-        <p>Current user: {JSON.stringify(getUser())}</p>
+        <IonSegment
+          value={category}
+          onIonChange={({ detail: { value } }: CustomEvent) => setCategory(value)}
+        >
+          <IonSegmentButton value="In Progress">
+            <IonLabel>In Progress</IonLabel>
+          </IonSegmentButton>
+          <IonSegmentButton value="Transactions">
+            <IonLabel>Transactions</IonLabel>
+          </IonSegmentButton>
+          <IonSegmentButton value="Menu">
+            <IonLabel>Menu</IonLabel>
+          </IonSegmentButton>
+        </IonSegment>
+
+        {(() => {
+          if (category === 'In Progress') {
+            return <InProgressTransactions />;
+          }
+
+          if (category === 'Transactions') {
+            return <HistoryTransactions />;
+          }
+
+          return null;
+        })()}
 
         <IonButton onClick={signOut}>Logout</IonButton>
       </IonContent>
