@@ -44,7 +44,7 @@ export const uploadMenu = async (file: File) => {
  * @param reference - The reference towards the object at Firebase Cloud Storage
  */
 export const deleteMenu = async (reference: string) => {
-  const storageMenuRef = ref(storage, `menu/${reference}`);
+  const storageMenuRef = ref(storage, reference);
 
   try {
     await deleteObject(storageMenuRef);
