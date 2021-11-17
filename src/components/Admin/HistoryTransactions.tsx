@@ -29,6 +29,7 @@ const HistoryTransactions = () => {
               </h2>
               <h3>{transaction.status}</h3>
               <h4>{transaction.totalPrice}</h4>
+              <h5>{transaction.created}</h5>
 
               {transaction.items.map((item) => (
                 <p key={item.name}>{JSON.stringify(item)}</p>
