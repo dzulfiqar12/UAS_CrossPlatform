@@ -8,6 +8,7 @@ import {
   IonPage,
   IonSegment,
   IonSegmentButton,
+  IonText,
   IonTitle,
   IonToolbar,
   useIonToast,
@@ -43,6 +44,12 @@ const Admin = () => {
             <IonBackButton />
           </IonButtons>
 
+          <IonButtons slot="end">
+            <IonButton slot="icon-only" onClick={signOut}>
+              <IonText>Logout</IonText>
+            </IonButton>
+          </IonButtons>
+
           <IonTitle>Admin</IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -74,8 +81,6 @@ const Admin = () => {
 
           return <AllMenu />;
         })()}
-
-        <IonButton onClick={signOut}>Logout</IonButton>
       </IonContent>
     </IonPage>
   );
