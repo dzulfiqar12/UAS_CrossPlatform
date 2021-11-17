@@ -48,7 +48,7 @@ const InProgressTransactions = () => {
                 <h4>{transaction.totalPrice}</h4>
 
                 {transaction.items.map((item) => (
-                  <p key={item.name}>{JSON.stringify(item)}</p>
+                  <p key={item.id}>{JSON.stringify(item)}</p>
                 ))}
 
                 <IonButton

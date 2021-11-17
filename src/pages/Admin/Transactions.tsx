@@ -34,7 +34,7 @@ const HistoryTransactions = () => {
                 <h5>{transaction.created}</h5>
 
                 {transaction.items.map((item) => (
-                  <p key={item.name}>{JSON.stringify(item)}</p>
+                  <p key={item.id}>{JSON.stringify(item)}</p>
                 ))}
               </IonLabel>
             </IonItem>

@@ -2,6 +2,7 @@
  * We do not use 'Menu' data type for our transaction item.
  */
 type TransactionItem = {
+  id: string;
   name: string;
   price: number;
   quantity: number;

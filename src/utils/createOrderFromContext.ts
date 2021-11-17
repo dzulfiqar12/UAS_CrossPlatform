@@ -14,6 +14,7 @@ const createOrderFromContext = (state: Context): Transaction => {
   const transactionId = nanoid();
   const totalPrice = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const processedItems = state.items.map((item) => ({
+    id: nanoid(),
     name: item.name,
     price: item.price,
     quantity: item.quantity,
