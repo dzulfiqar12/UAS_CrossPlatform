@@ -10,7 +10,7 @@ import {
 import { useCallback, useEffect, useState } from 'react';
 
 import AdminLayout from '../../components/Admin/AdminLayout';
-import { acceptTransaction, getTransactions } from '../../firebase/firestore';
+import { acceptTransaction, denyTransaction, getTransactions } from '../../firebase/firestore';
 import type Transaction from '../../types/Transaction';
 
 const InProgressTransactions = () => {
@@ -59,7 +59,18 @@ const InProgressTransactions = () => {
                       .catch((err) => present(err, 500));
                   }}
                 >
-                  Accept
+                  Finish
+                </IonButton>
+
+                <IonButton
+                  onClick={() => {
+                    denyTransaction(transaction.id)
+                      .then(() => present('Order has been denied!', 500))
+                      .then(() => fetchTransactionsInApp())
+                      .catch((err) => present(err, 500));
+                  }}
+                >
+                  Deny
                 </IonButton>
               </IonLabel>
             </IonItem>
