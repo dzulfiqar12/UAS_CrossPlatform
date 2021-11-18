@@ -50,7 +50,10 @@ const ModalCustomerInfo = ({ isOpen, setIsOpen }: Props) => {
               <IonItem>
                 <IonLabel position="stacked">Customer name</IonLabel>
                 <IonInput
+                  required
                   type="text"
+                  inputmode="text"
+                  autocapitalize="words"
                   value={state.customerName}
                   onIonChange={({ detail: { value } }) =>
                     dispatch({ type: 'setCustomerName', payload: value as string })
@@ -61,7 +64,10 @@ const ModalCustomerInfo = ({ isOpen, setIsOpen }: Props) => {
               <IonItem>
                 <IonLabel position="stacked">Table name</IonLabel>
                 <IonInput
+                  required
                   type="text"
+                  inputmode="text"
+                  autocapitalize="characters"
                   value={state.tableName}
                   onIonChange={({ detail: { value } }) =>
                     dispatch({ type: 'setTableName', payload: value as string })

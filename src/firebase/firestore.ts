@@ -139,3 +139,18 @@ export const acceptTransaction = async (transactionId: string) => {
     throw FirestoreError;
   }
 };
+
+/**
+ * Denies a transaction.
+ *
+ * @param transactionId - Transaction ID
+ */
+export const denyTransaction = async (transactionId: string) => {
+  const ref = doc(db, 'transactions', transactionId);
+
+  try {
+    await deleteDoc(ref);
+  } catch {
+    throw FirestoreError;
+  }
+};

@@ -63,8 +63,7 @@ service cloud.firestore {
 
     match /transactions/{transaction} {
       allow create;
-      allow edit, update: if request.auth != null;
-      allow read;
+      allow read, update, delete: if request.auth != null;
     }
   }
 }
@@ -103,3 +102,13 @@ npm run lint
 ```bash
 npm run clean
 ```
+
+## QR Code
+
+- To generate QR code to represent the website and to auto-fill the table name, you have to change the `tableName` and `websiteURL` variables in `qr/index.ts` file. After you have changed it, run the following script.
+
+```bash
+npm run genqr
+```
+
+- The QR code will be placed in `qr/qrcode.png`. You have to run this multiple times and you have to edit the variables in order to fill the restaurant (if you're using this in a restaurant) with unique QRs with autofilled table names.
