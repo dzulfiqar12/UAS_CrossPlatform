@@ -7,7 +7,6 @@ import {
   IonHeader,
   IonInput,
   IonItem,
-  IonItemDivider,
   IonLabel,
   IonModal,
   IonRow,
@@ -19,7 +18,7 @@ import {
   useIonToast,
 } from '@ionic/react';
 import { nanoid } from 'nanoid';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 
 import { createMenu } from '../../firebase/firestore';
 import { uploadMenu } from '../../firebase/storage';
@@ -38,6 +37,7 @@ const NewMenu = ({ isOpen, setIsOpen, updater }: Props) => {
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [present] = useIonToast();
   const [presentLoading, dismissLoading] = useIonLoading();
+  const fileRef = useRef<HTMLInputElement>(null);
 
   return (
     <IonModal isOpen={isOpen}>
@@ -58,27 +58,36 @@ const NewMenu = ({ isOpen, setIsOpen, updater }: Props) => {
               <IonItem>
                 <IonLabel position="floating">Menu name</IonLabel>
                 <IonInput
+                  required
+                  type="text"
+                  inputmode="text"
+                  autocapitalize="words"
                   value={name}
                   onIonChange={({ detail: { value } }) => setName(value!)}
-                  type="text"
                 />
               </IonItem>
 
               <IonItem>
                 <IonLabel position="floating">Price</IonLabel>
                 <IonInput
+                  required
+                  type="number"
+                  inputmode="numeric"
                   value={price}
                   onIonChange={({ detail: { value } }) => setPrice(parseInt(value!, 10))}
-                  type="number"
                 />
               </IonItem>
 
               <IonItem>
                 <IonLabel position="floating">Description</IonLabel>
                 <IonInput
+                  required
+                  type="text"
+                  inputmode="text"
+                  autocapitalize="sentences"
+                  autocorrect="on"
                   value={description}
                   onIonChange={({ detail: { value } }) => setDescription(value!)}
-                  type="text"
                 />
               </IonItem>
 
@@ -94,16 +103,36 @@ const NewMenu = ({ isOpen, setIsOpen, updater }: Props) => {
                   <IonSelectOption value="Go Home">Go Home</IonSelectOption>
                 </IonSelect>
               </IonItem>
+            </IonCol>
+          </IonRow>
 
-              <IonItemDivider />
+          <IonRow>
+            <IonCol>
+              <IonButton
+                expand="block"
+                style={{ marginBottom: '20px' }}
+                onClick={() => fileRef?.current?.click()}
+              >
+                <input
+                  hidden
+                  ref={fileRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={({ target }) => {
+                    if (target.files && target.files.length > 0) {
+                      setPhoto(target.files[0]);
+                      return;
+                    }
 
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setPhoto(e.target.files ? e.target.files[0] : undefined)}
-              />
+                    setPhoto(undefined);
+                  }}
+                />
+                {photo ? photo.name : 'Choose photo'}
+              </IonButton>
 
-              <IonItemDivider />
+              <p style={{ textAlign: 'center' }}>
+                Menu photo is {photo ? photo.name : 'not chosen yet!'}
+              </p>
 
               <IonButton
                 expand="block"

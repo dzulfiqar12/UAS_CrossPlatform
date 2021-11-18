@@ -7,7 +7,6 @@ import {
   IonHeader,
   IonInput,
   IonItem,
-  IonItemDivider,
   IonLabel,
   IonModal,
   IonRow,
@@ -18,7 +17,7 @@ import {
   useIonLoading,
   useIonToast,
 } from '@ionic/react';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 import { updateMenu } from '../../firebase/firestore';
 import { deleteMenu, uploadMenu } from '../../firebase/storage';
@@ -39,6 +38,7 @@ const EditMenu = ({ isOpen, setIsOpen, updater, data }: Props) => {
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [present] = useIonToast();
   const [presentLoading, dismissLoading] = useIonLoading();
+  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!data) {
@@ -72,27 +72,36 @@ const EditMenu = ({ isOpen, setIsOpen, updater, data }: Props) => {
                   <IonItem>
                     <IonLabel position="floating">Menu name</IonLabel>
                     <IonInput
+                      required
+                      type="text"
+                      inputmode="text"
+                      autocapitalize="words"
                       value={name}
                       onIonChange={({ detail: { value } }) => setName(value!)}
-                      type="text"
                     />
                   </IonItem>
 
                   <IonItem>
                     <IonLabel position="floating">Price</IonLabel>
                     <IonInput
+                      required
+                      type="number"
+                      inputmode="numeric"
                       value={price}
                       onIonChange={({ detail: { value } }) => setPrice(parseInt(value!, 10))}
-                      type="number"
                     />
                   </IonItem>
 
                   <IonItem>
                     <IonLabel position="floating">Description</IonLabel>
                     <IonInput
+                      required
+                      type="text"
+                      inputmode="text"
+                      autocapitalize="sentences"
+                      autocorrect="on"
                       value={description}
                       onIonChange={({ detail: { value } }) => setDescription(value!)}
-                      type="text"
                     />
                   </IonItem>
 
@@ -108,25 +117,44 @@ const EditMenu = ({ isOpen, setIsOpen, updater, data }: Props) => {
                       <IonSelectOption value="Go Home">Go Home</IonSelectOption>
                     </IonSelect>
                   </IonItem>
+                </IonCol>
+              </IonRow>
 
-                  <IonItemDivider />
+              <IonRow>
+                <IonCol>
+                  <IonButton
+                    expand="block"
+                    style={{ marginBottom: '20px' }}
+                    onClick={() => fileRef?.current?.click()}
+                  >
+                    <input
+                      hidden
+                      ref={fileRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={({ target }) => {
+                        if (target.files && target.files.length > 0) {
+                          setPhoto(target.files[0]);
+                          return;
+                        }
 
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setPhoto(e.target.files ? e.target.files[0] : undefined)}
-                  />
+                        setPhoto(undefined);
+                      }}
+                    />
+                    {photo ? photo.name : 'Change photo'}
+                  </IonButton>
 
-                  <IonItemDivider />
+                  <p style={{ textAlign: 'center' }}>
+                    Menu photo is {photo ? photo.name : 'not yet changed!'}
+                  </p>
+
+                  <p style={{ textAlign: 'center' }}>Menu photo ref: {data.photoRef}</p>
 
                   <IonButton
                     expand="block"
                     fill="outline"
+                    disabled={name === '' || description === ''}
                     onClick={async () => {
-                      if (name === '' || description === '') {
-                        return;
-                      }
-
                       // upsert
                       if (!photo) {
                         presentLoading('Editing menu...');
