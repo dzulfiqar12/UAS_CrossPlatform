@@ -35,6 +35,7 @@ const App = () => (
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path={routes.home} component={Home} />
+          <Route exact path={`${routes.home}/:tableName`} component={Home} />
           <Route exact path={routes.cart} component={Cart} />
           <Route exact path={routes.login} component={Login} />
 

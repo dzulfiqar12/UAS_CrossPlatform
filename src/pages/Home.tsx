@@ -18,6 +18,7 @@ import {
 } from '@ionic/react';
 import { cartSharp, informationSharp, keySharp, personCircleSharp } from 'ionicons/icons';
 import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
 import ModalCustomerInfo from '../components/ModalCustomerInfo';
 import ModalSingleMenu from '../components/ModalSingleMenu';
@@ -27,8 +28,13 @@ import type Menu from '../types/Menu';
 import OrderContext from '../utils/context';
 import routes from '../utils/routes';
 
+interface Params {
+  tableName?: string;
+}
+
 export const Home: React.FC = () => {
-  const { state } = useContext(OrderContext);
+  const { tableName } = useParams<Params>();
+  const { state, dispatch } = useContext(OrderContext);
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
   const [chosenMenu, setChosenMenu] = useState({} as Menu);
@@ -37,14 +43,14 @@ export const Home: React.FC = () => {
   const user = getUser();
 
   useEffect(() => {
-    console.log('Currently logged in user:');
-    console.log(getUser());
-    console.log(state);
+    if (tableName) {
+      dispatch({ type: 'setTableName', payload: tableName });
+    }
 
     getMenu()
       .then((res) => setMenu(res))
       .catch((err) => console.error(err));
-  }, [user, state]);
+  }, [dispatch, tableName]);
 
   return (
     <>
