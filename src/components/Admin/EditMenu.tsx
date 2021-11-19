@@ -155,23 +155,39 @@ const EditMenu = ({ isOpen, setIsOpen, updater, data }: Props) => {
                     fill="outline"
                     disabled={name === '' || description === ''}
                     onClick={async () => {
+                      if (name === '' || description === '') {
+                        return;
+                      }
+
                       // upsert
+                      // edit menu without photo, dismiss loading
                       if (!photo) {
                         presentLoading('Editing menu...');
-                        await updateMenu(data.id, {
-                          name,
-                          price,
-                          description,
-                          category,
-                          updated: Date.now(),
-                        });
 
-                        // dismiss loading
-                        dismissLoading();
+                        try {
+                          await updateMenu(data.id, {
+                            name,
+                            price,
+                            description,
+                            category,
+                            updated: Date.now(),
+                          });
+                        } catch (err) {
+                          if (err instanceof Error) {
+                            present(err.message, 1000);
+                          }
+
+                          present('Internal server error detected!', 1000);
+                        } finally {
+                          dismissLoading();
+                        }
 
                         // confirmation and switch
                         updater();
                         present('Menu edited!', 500);
+
+                        // reset relevant states
+                        setPhoto(undefined);
                         setIsOpen(false);
                         return;
                       }
@@ -179,27 +195,39 @@ const EditMenu = ({ isOpen, setIsOpen, updater, data }: Props) => {
                       // loading
                       presentLoading('Editing menu with photo...');
 
-                      // upload image
-                      const [uploadUrl, storageRef] = await uploadMenu(photo);
+                      // upload image, edit menu, dismiss loading
+                      // do in parallel
+                      try {
+                        const [uploadUrl, storageRef] = await uploadMenu(photo);
 
-                      // edit menu
-                      await deleteMenu(data.photoRef);
-                      await updateMenu(data.id, {
-                        name,
-                        price,
-                        description,
-                        photo: uploadUrl,
-                        photoRef: storageRef,
-                        category,
-                        updated: Date.now(),
-                      });
+                        await Promise.all([
+                          deleteMenu(data.photoRef),
+                          updateMenu(data.id, {
+                            name,
+                            price,
+                            description,
+                            photo: uploadUrl,
+                            photoRef: storageRef,
+                            category,
+                            updated: Date.now(),
+                          }),
+                        ]);
+                      } catch (err) {
+                        if (err instanceof Error) {
+                          present(err.message, 1000);
+                        }
 
-                      // dismiss loading
-                      dismissLoading();
+                        present('Internal server error detected!', 1000);
+                      } finally {
+                        dismissLoading();
+                      }
 
                       // confirmation and switch
                       updater();
                       present('Menu edited!', 500);
+
+                      // reset relevant states
+                      setPhoto(undefined);
                       setIsOpen(false);
                     }}
                   >

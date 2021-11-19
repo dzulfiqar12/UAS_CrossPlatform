@@ -146,28 +146,41 @@ const NewMenu = ({ isOpen, setIsOpen, updater }: Props) => {
                   // loading
                   presentLoading('Adding new menu...');
 
-                  // upload image
-                  const [uploadUrl, storageRef] = await uploadMenu(photo);
+                  // upload image, create new menu, dismiss loading
+                  try {
+                    const [uploadUrl, storageRef] = await uploadMenu(photo);
 
-                  // create new menu
-                  await createMenu({
-                    id: nanoid(),
-                    name,
-                    price,
-                    description,
-                    photo: uploadUrl,
-                    photoRef: storageRef,
-                    category,
-                    created: Date.now(),
-                    updated: Date.now(),
-                  });
+                    await createMenu({
+                      id: nanoid(),
+                      name,
+                      price,
+                      description,
+                      photo: uploadUrl,
+                      photoRef: storageRef,
+                      category,
+                      created: Date.now(),
+                      updated: Date.now(),
+                    });
+                  } catch (err) {
+                    if (err instanceof Error) {
+                      present(err.message, 1000);
+                    }
 
-                  // dismiss loading
-                  dismissLoading();
+                    present('Internal server error discovered!', 1000);
+                  } finally {
+                    dismissLoading();
+                  }
 
                   // confirmation and switch
                   updater();
                   present('Menu added!', 500);
+
+                  // reset relevant states
+                  setName('');
+                  setPrice(0);
+                  setDescription('');
+                  setPhoto(undefined);
+                  setCategory('Ala Carte');
                   setIsOpen(false);
                 }}
               >
