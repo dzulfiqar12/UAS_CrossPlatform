@@ -1,8 +1,14 @@
+import '../styles/Home.css';
+
 import {
   IonAvatar,
   IonButton,
   IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCol,
   IonContent,
+  IonGrid,
   IonHeader,
   IonIcon,
   IonImg,
@@ -11,6 +17,7 @@ import {
   IonList,
   IonListHeader,
   IonPage,
+  IonRow,
   IonSegment,
   IonSegmentButton,
   IonTitle,
@@ -85,7 +92,7 @@ export const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <IonContent fullscreen>
+        <IonContent fullscreen className="content">
           <IonSegment
             value={category}
             onIonChange={({ detail: { value } }: CustomEvent) => setCategory(value)}
@@ -101,61 +108,77 @@ export const Home: React.FC = () => {
             </IonSegmentButton>
           </IonSegment>
 
-          <IonList>
+          {/* <IonList>
             <IonListHeader>
               <IonTitle>Menu</IonTitle>
-            </IonListHeader>
+            </IonListHeader> */}
+          <IonGrid className="menu">
+            <IonRow>
+              {menu
+                .filter((item) => item.category === category)
+                .map((item) => (
+                  <IonCol size="6">
+                    {/* <IonItem */}
+                    <IonCard
+                      className="card"
+                      onClick={() => {
+                        setChosenMenu(item);
+                        setShowMenuModal(true);
+                      }}
+                      key={item.id}
+                    >
+                      {/* > */}
+                      {/* <IonAvatar slot="start"> */}
+                      {/* <IonImg src={item.photo} alt={`Avatar of ${item.name}`} className="img" /> */}
+                      {/* </IonAvatar> */}
 
-            {menu
-              .filter((item) => item.category === category)
-              .map((item) => (
-                <IonItem
-                  onClick={() => {
-                    setChosenMenu(item);
-                    setShowMenuModal(true);
-                  }}
-                  key={item.id}
-                >
-                  <IonAvatar slot="start">
-                    <IonImg src={item.photo} alt={`Avatar of ${item.name}`} />
-                  </IonAvatar>
+                      <IonCardContent>
+                        <img src={item.photo} alt={`Avatar of ${item.name}`} className="img" />
+                        <IonLabel>
+                          <h2>{item.name}</h2>
+                          <h3>{item.category}</h3>
+                          <p>{item.description}</p>
 
-                  <IonLabel>
-                    <h2>{item.name}</h2>
-                    <h3>{item.category}</h3>
-                    <p>{item.description}</p>
+                          {(() => {
+                            const orderedItem = state.items.find((o) => o.menuId === item.id);
 
-                    {(() => {
-                      const orderedItem = state.items.find((o) => o.menuId === item.id);
+                            if (!orderedItem) {
+                              return (
+                                <IonButton
+                                  size="small"
+                                  onClick={() => {
+                                    setChosenMenu(item);
+                                    setShowMenuModal(true);
+                                  }}
+                                  shape="round"
+                                >
+                                  Add to Cart
+                                </IonButton>
+                              );
+                            }
 
-                      if (!orderedItem) {
-                        return (
-                          <IonButton
-                            onClick={() => {
-                              setChosenMenu(item);
-                              setShowMenuModal(true);
-                            }}
-                          >
-                            Add to Cart
-                          </IonButton>
-                        );
-                      }
-
-                      return (
-                        <IonButton
-                          onClick={() => {
-                            setChosenMenu(item);
-                            setShowMenuModal(true);
-                          }}
-                        >
-                          Ordered: {orderedItem.quantity}
-                        </IonButton>
-                      );
-                    })()}
-                  </IonLabel>
-                </IonItem>
-              ))}
-          </IonList>
+                            return (
+                              <IonButton
+                                size="small"
+                                onClick={() => {
+                                  setChosenMenu(item);
+                                  setShowMenuModal(true);
+                                }}
+                                shape="round"
+                              >
+                                Ordered: {orderedItem.quantity}
+                              </IonButton>
+                            );
+                          })()}
+                        </IonLabel>
+                      </IonCardContent>
+                    </IonCard>
+                    {/* </IonItem> */}
+                  </IonCol>
+                ))}
+              {/* </IonList> */}
+            </IonRow>
+          </IonGrid>
         </IonContent>
       </IonPage>
     </>
