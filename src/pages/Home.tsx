@@ -135,7 +135,7 @@ export const Home: React.FC = () => {
                       <IonCardContent>
                         <img src={item.photo} alt={`Avatar of ${item.name}`} className="img" />
                         <IonLabel>
-                          <h2>{item.name}</h2>
+                          <h1 style={{ fontWeight: 'bold' }}>{item.name}</h1>
                           <h3>{item.category}</h3>
                           <p>{item.description}</p>
 

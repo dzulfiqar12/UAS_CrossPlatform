@@ -1,3 +1,5 @@
+import '../../styles/Admin/Index.css';
+
 import {
   IonBackButton,
   IonButton,
@@ -49,7 +51,9 @@ const AdminLayout = ({ children }: Props) => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent className="ion-padding">{children}</IonContent>
+      <IonContent className="ion-padding background-img" fullscreen>
+        {children}
+      </IonContent>
     </IonPage>
   );
 };

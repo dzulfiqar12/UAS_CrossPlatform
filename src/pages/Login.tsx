@@ -23,7 +23,7 @@ const Login = () => {
             name="email"
             type="text"
             placeholder="username"
-            color="light"
+            color="black"
             value={email}
             onIonChange={({ detail: { value } }) => setEmail(value!)}
           />
@@ -32,7 +32,7 @@ const Login = () => {
             name="password"
             type="password"
             placeholder="password"
-            color="light"
+            color="black"
             value={password}
             onIonChange={({ detail: { value } }) => setPassword(value!)}
           />
