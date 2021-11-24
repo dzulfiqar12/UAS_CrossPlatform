@@ -1,9 +1,19 @@
 import '../styles/Login.css';
 
-import { IonButton, IonContent, IonInput, IonPage, useIonToast } from '@ionic/react';
+import {
+  IonButton,
+  IonContent,
+  IonIcon,
+  IonImg,
+  IonInput,
+  IonPage,
+  useIonToast,
+} from '@ionic/react';
+import { person } from 'ionicons/icons';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 
+import profileImg from '../../src/assets/png.png';
 import { login } from '../firebase/auth';
 import routes from '../utils/routes';
 
@@ -18,12 +28,12 @@ const Login = () => {
     <IonPage>
       <IonContent fullscreen className="content">
         <div className="elipse"></div>
+
         <div className="login_form">
           <IonInput
             name="email"
             type="text"
             placeholder="username"
-            color="light"
             value={email}
             onIonChange={({ detail: { value } }) => setEmail(value!)}
           />
@@ -32,7 +42,6 @@ const Login = () => {
             name="password"
             type="password"
             placeholder="password"
-            color="light"
             value={password}
             onIonChange={({ detail: { value } }) => setPassword(value!)}
           />
