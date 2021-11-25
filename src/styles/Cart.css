@@ -3,3 +3,23 @@
   color: aliceblue;
 }
 
+.ion-text-center {
+  --height: 50%;
+  --border_radius: 50%;
+  --margin: 50px;
+  padding: 25px;
+}
+
+.cart {
+  --height: 50%;
+  --border_radius: 50%;
+  --margin: 10px;
+  padding: 25px;
+}
+
+.colomn {
+  --height: 50%;
+  --border_radius: 50%;
+  --margin: 50px;
+  padding: 25px;
+}

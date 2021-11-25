@@ -105,8 +105,8 @@ const Cart = () => {
         </IonList>
 
         <IonGrid className="ion-text-center">
-          <IonRow>
-            <IonCol>
+          <IonRow className="cart">
+            <IonCol className="colomn">
               <p>
                 Price: Rp.{' '}
                 {state.items
