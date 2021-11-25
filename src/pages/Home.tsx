@@ -6,6 +6,9 @@ import {
   IonButtons,
   IonCard,
   IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
   IonCol,
   IonContent,
   IonGrid,
@@ -92,7 +95,7 @@ export const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <IonContent fullscreen className="content">
+        <IonContent fullscreen>
           <IonSegment
             value={category}
             onIonChange={({ detail: { value } }: CustomEvent) => setCategory(value)}
@@ -131,34 +134,24 @@ export const Home: React.FC = () => {
                       {/* <IonAvatar slot="start"> */}
                       {/* <IonImg src={item.photo} alt={`Avatar of ${item.name}`} className="img" /> */}
                       {/* </IonAvatar> */}
-
+                      <img src={item.photo} alt={`Avatar of ${item.name}`} className="img" />
+                      <IonCardHeader>
+                        <IonCardTitle className="card-title">{item.name}</IonCardTitle>
+                        <IonCardSubtitle>
+                          <p style={{ marginBottom: -4 }}>{item.category}</p>
+                        </IonCardSubtitle>
+                      </IonCardHeader>
                       <IonCardContent>
-                        <img src={item.photo} alt={`Avatar of ${item.name}`} className="img" />
-                        <IonLabel>
-                          <h1 style={{ fontWeight: 'bold' }}>{item.name}</h1>
-                          <h3>{item.category}</h3>
-                          <p>{item.description}</p>
+                        {/* <IonLabel> */}
+                        <div className="card-deskripsi">{item.description}</div>
 
-                          {(() => {
-                            const orderedItem = state.items.find((o) => o.menuId === item.id);
+                        {(() => {
+                          const orderedItem = state.items.find((o) => o.menuId === item.id);
 
-                            if (!orderedItem) {
-                              return (
-                                <IonButton
-                                  size="small"
-                                  onClick={() => {
-                                    setChosenMenu(item);
-                                    setShowMenuModal(true);
-                                  }}
-                                  shape="round"
-                                >
-                                  Add to Cart
-                                </IonButton>
-                              );
-                            }
-
+                          if (!orderedItem) {
                             return (
                               <IonButton
+                                className="button"
                                 size="small"
                                 onClick={() => {
                                   setChosenMenu(item);
@@ -166,11 +159,26 @@ export const Home: React.FC = () => {
                                 }}
                                 shape="round"
                               >
-                                Ordered: {orderedItem.quantity}
+                                Add to Cart
                               </IonButton>
                             );
-                          })()}
-                        </IonLabel>
+                          }
+
+                          return (
+                            <IonButton
+                              className="button"
+                              size="small"
+                              onClick={() => {
+                                setChosenMenu(item);
+                                setShowMenuModal(true);
+                              }}
+                              shape="round"
+                            >
+                              Ordered: {orderedItem.quantity}
+                            </IonButton>
+                          );
+                        })()}
+                        {/* </IonLabel> */}
                       </IonCardContent>
                     </IonCard>
                     {/* </IonItem> */}

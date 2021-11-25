@@ -36,7 +36,7 @@ const AdminLayout = ({ children }: Props) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar className="contentRed">
           <IonButtons slot="start">
             <IonBackButton />
           </IonButtons>
