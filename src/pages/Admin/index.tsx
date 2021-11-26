@@ -1,3 +1,5 @@
+import '../../styles/Admin/Index.css';
+
 import { IonButton } from '@ionic/react';
 
 import AdminLayout from '../../components/Admin/AdminLayout';
@@ -14,16 +16,16 @@ const Admin = () => (
         justifyContent: 'center',
       }}
     >
-      <p>Welcome, {getUser()?.email?.split('@')[0]}!</p>
-      <IonButton style={{ width: '250px' }} routerLink={routes.adminOngoing}>
+      <p className="welcome-title">Welcome, {getUser()?.email?.split('@')[0]}!</p>
+      <IonButton className="menu-button" routerLink={routes.adminOngoing}>
         In Progress Transactions
       </IonButton>
 
-      <IonButton style={{ width: '250px' }} routerLink={routes.adminHistory}>
+      <IonButton className="menu-button" routerLink={routes.adminHistory}>
         All Transactions
       </IonButton>
 
-      <IonButton style={{ width: '250px' }} routerLink={routes.adminMenu}>
+      <IonButton className="menu-button" routerLink={routes.adminMenu}>
         Menu Management
       </IonButton>
     </section>

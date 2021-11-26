@@ -1,3 +1,5 @@
+import '../styles/Cart.css';
+
 import {
   IonBackButton,
   IonButton,
@@ -34,7 +36,7 @@ const Cart = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar className="bg">
           <IonButtons slot="start">
             <IonBackButton />
           </IonButtons>
@@ -56,6 +58,7 @@ const Cart = () => {
 
                 <h3>Quantity: {item.quantity}</h3>
                 <IonButton
+                  color="medium"
                   onClick={() =>
                     dispatch({
                       type: 'setOrderItemQuantity',
@@ -70,6 +73,7 @@ const Cart = () => {
                 </IonButton>
 
                 <IonButton
+                  color="medium"
                   onClick={() => {
                     if (item.quantity - 1 === 0) {
                       return;
@@ -90,7 +94,10 @@ const Cart = () => {
                 <h4>Price: {item.price * item.quantity}</h4>
               </IonLabel>
 
-              <IonButton onClick={() => dispatch({ type: 'deleteOrderItem', payload: item.id })}>
+              <IonButton
+                color="danger"
+                onClick={() => dispatch({ type: 'deleteOrderItem', payload: item.id })}
+              >
                 Remove Item
               </IonButton>
             </IonItem>
@@ -112,6 +119,7 @@ const Cart = () => {
           <IonRow>
             <IonCol>
               <IonButton
+                color="success"
                 expand="block"
                 disabled={state.items.length === 0}
                 onClick={() => {
