@@ -47,6 +47,8 @@ npm i
 - You may run database migration by typing the following command. Keep in mind that this will remove all of the data in the `menu` and `transactions` collections.
 
 ```bash
+export USERNAME=...
+export PASSWORD=...
 npm run migrate
 ```
 
