@@ -3,3 +3,21 @@
   color: aliceblue;
 }
 
+.bg2 {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 20px;
+}
+
+.ion-text-center {
+  padding: 10px;
+}
+
+.cart {
+  padding: 20px;
+}
+
+.colomn {
+  padding: 30px;
+}
