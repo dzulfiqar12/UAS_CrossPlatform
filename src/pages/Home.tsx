@@ -145,17 +145,19 @@ export const Home: React.FC = () => {
 
                           if (!orderedItem) {
                             return (
-                              <IonButton
-                                className="button"
-                                size="small"
-                                onClick={() => {
-                                  setChosenMenu(item);
-                                  setShowMenuModal(true);
-                                }}
-                                shape="round"
-                              >
-                                Add to Cart
-                              </IonButton>
+                              <div className="button-place">
+                                <IonButton
+                                  className="button"
+                                  size="small"
+                                  onClick={() => {
+                                    setChosenMenu(item);
+                                    setShowMenuModal(true);
+                                  }}
+                                  shape="round"
+                                >
+                                  Add to Cart
+                                </IonButton>
+                              </div>
                             );
                           }
 
