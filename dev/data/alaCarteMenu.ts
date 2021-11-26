@@ -1,17 +1,17 @@
+import fs from 'fs';
 import { nanoid } from 'nanoid';
-
-import type Menu from '../../src/types/Menu';
+import path from 'path';
 
 /**
  * Menu for Ala Carte.
  */
-const alaCarteMenus: Menu[] = [
+const alaCarteMenus = [
   {
     id: nanoid(),
     name: 'Ayam Hemat',
     price: 14000,
     description: 'Ayam biasa dengan versi yang lebih hemat.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -22,7 +22,7 @@ const alaCarteMenus: Menu[] = [
     name: 'Ayam',
     price: 17000,
     description: 'Ayam biasa yang merupakan favorit setiap orang.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-paket.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -33,7 +33,9 @@ const alaCarteMenus: Menu[] = [
     name: 'Bebek Reguler',
     price: 18000,
     description: 'Bebek biasa yang merupakan favorit setiap orang.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs
+      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
+      .toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -44,7 +46,9 @@ const alaCarteMenus: Menu[] = [
     name: 'Bebek Boss',
     price: 26000,
     description: 'Bebek khas Pak Boss yang memiliki rasa sangat unik dan lezat.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs
+      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
+      .toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -55,7 +59,7 @@ const alaCarteMenus: Menu[] = [
     name: 'Nasi Putih',
     price: 4000,
     description: 'Nasi putih dengan kualitas tertinggi.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'nasi-putih.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -66,7 +70,7 @@ const alaCarteMenus: Menu[] = [
     name: 'Kol Crispy',
     price: 3000,
     description: 'Kol dengan rasa khas dan sangat lezat.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'kol-crispy.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -77,7 +81,7 @@ const alaCarteMenus: Menu[] = [
     name: 'Tahu',
     price: 2000,
     description: 'Tahu khas Pak Boss, lengkap dengan timun.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'tahu.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -88,7 +92,7 @@ const alaCarteMenus: Menu[] = [
     name: 'Tempe',
     price: 2000,
     description: 'Tempe khas Pak Boss, lengkap dengan timun.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'tempe.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -99,7 +103,7 @@ const alaCarteMenus: Menu[] = [
     name: 'Indomie Goreng Pak Boss',
     price: 10000,
     description: 'Indomie Goreng dengan tambahan bumbu Pak Boss.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'mie-goreng.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -110,7 +114,7 @@ const alaCarteMenus: Menu[] = [
     name: 'Indomie Goreng Pak Boss + Telur',
     price: 14000,
     description: 'Indomie Goreng dengan bumbu Pak Boss, ditambah dengan telur bebas.',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'mie-goreng.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -121,7 +125,9 @@ const alaCarteMenus: Menu[] = [
     name: 'Bubble Boss Drink',
     price: 10000,
     description: 'Minuman khas Pak Boss dengan rasa yang unik. Banyak rasa!',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs
+      .readFileSync(path.join(__dirname, '..', 'img', 'bubble-drink.webp'))
+      .toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
