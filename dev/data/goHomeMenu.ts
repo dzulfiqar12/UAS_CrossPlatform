@@ -1,17 +1,17 @@
+import fs from 'fs';
 import { nanoid } from 'nanoid';
-
-import type Menu from '../../src/types/Menu';
+import path from 'path';
 
 /**
  * Menu for Go Home.
  */
-const goHomeMenus: Menu[] = [
+const goHomeMenus = [
   {
     id: nanoid(),
     name: 'Ayam Hemat',
     price: 74000,
     description: 'Ayam hemat yang tinggal digoreng!',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-paket.webp')).toString('base64'),
     photoRef: '',
     category: 'Go Home',
     created: Date.now(),
@@ -22,7 +22,7 @@ const goHomeMenus: Menu[] = [
     name: 'Ayam Reguler',
     price: 90000,
     description: 'Ayam reguler yang tinggal digoreng!',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-paket.webp')).toString('base64'),
     photoRef: '',
     category: 'Go Home',
     created: Date.now(),
@@ -33,7 +33,9 @@ const goHomeMenus: Menu[] = [
     name: 'Bebek Reguler',
     price: 92000,
     description: 'Bebek reguler yang tinggal digoreng!',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs
+      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
+      .toString('base64'),
     photoRef: '',
     category: 'Go Home',
     created: Date.now(),
@@ -44,7 +46,9 @@ const goHomeMenus: Menu[] = [
     name: 'Bebek Boss',
     price: 155000,
     description: 'Bebek boss yang tinggal digoreng!',
-    photo: 'https://i.pinimg.com/736x/17/d7/eb/17d7ebc2b1e224b245aba20e5ba7d6b3.jpg',
+    photo: fs
+      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
+      .toString('base64'),
     photoRef: '',
     category: 'Go Home',
     created: Date.now(),
