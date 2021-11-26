@@ -1,20 +1,9 @@
 import '../styles/Login.css';
 
-import {
-  IonButton,
-  IonContent,
-  IonIcon,
-  IonImg,
-  IonInput,
-  IonPage,
-  IonTitle,
-  useIonToast,
-} from '@ionic/react';
-import { person } from 'ionicons/icons';
+import { IonButton, IonContent, IonInput, IonPage, useIonToast } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 
-import profileImg from '../../src/assets/png.png';
 import { login } from '../firebase/auth';
 import routes from '../utils/routes';
 

@@ -1,7 +1,6 @@
 import '../styles/Home.css';
 
 import {
-  IonAvatar,
   IonButton,
   IonButtons,
   IonCard,
@@ -14,11 +13,7 @@ import {
   IonGrid,
   IonHeader,
   IonIcon,
-  IonImg,
-  IonItem,
   IonLabel,
-  IonList,
-  IonListHeader,
   IonPage,
   IonRow,
   IonSegment,
