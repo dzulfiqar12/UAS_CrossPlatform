@@ -17,6 +17,7 @@
     "genqr": "cross-env TS_NODE_COMPILER_OPTIONS='{\"module\":\"CommonJS\"}' ts-node qr"
   },
   "dependencies": {
+    "@capacitor/android": "3.3.2",
     "@capacitor/app": "1.0.5",
     "@capacitor/core": "3.2.5",
     "@capacitor/haptics": "1.1.2",

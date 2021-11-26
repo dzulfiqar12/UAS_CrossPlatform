@@ -1,3 +1,5 @@
+import '../styles/Cart.css';
+
 import {
   IonBackButton,
   IonButton,
@@ -34,7 +36,7 @@ const Cart = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar className="bg">
           <IonButtons slot="start">
             <IonBackButton />
           </IonButtons>
@@ -50,12 +52,13 @@ const Cart = () => {
           </IonListHeader>
 
           {state.items.map((item) => (
-            <IonItem key={item.id}>
-              <IonLabel>
+            <IonItem className="bg2" key={item.id}>
+              <IonLabel className="bg3">
                 <h2>Name: {item.name}</h2>
 
                 <h3>Quantity: {item.quantity}</h3>
                 <IonButton
+                  color="medium"
                   onClick={() =>
                     dispatch({
                       type: 'setOrderItemQuantity',
@@ -70,6 +73,7 @@ const Cart = () => {
                 </IonButton>
 
                 <IonButton
+                  color="medium"
                   onClick={() => {
                     if (item.quantity - 1 === 0) {
                       return;
@@ -90,7 +94,10 @@ const Cart = () => {
                 <h4>Price: {item.price * item.quantity}</h4>
               </IonLabel>
 
-              <IonButton onClick={() => dispatch({ type: 'deleteOrderItem', payload: item.id })}>
+              <IonButton
+                color="danger"
+                onClick={() => dispatch({ type: 'deleteOrderItem', payload: item.id })}
+              >
                 Remove Item
               </IonButton>
             </IonItem>
@@ -98,8 +105,8 @@ const Cart = () => {
         </IonList>
 
         <IonGrid className="ion-text-center">
-          <IonRow>
-            <IonCol>
+          <IonRow className="cart">
+            <IonCol className="colomn">
               <p>
                 Price: Rp.{' '}
                 {state.items
@@ -112,6 +119,7 @@ const Cart = () => {
           <IonRow>
             <IonCol>
               <IonButton
+                color="success"
                 expand="block"
                 disabled={state.items.length === 0}
                 onClick={() => {

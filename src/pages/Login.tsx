@@ -18,12 +18,14 @@ const Login = () => {
     <IonPage>
       <IonContent fullscreen className="content">
         <div className="elipse"></div>
+
         <div className="login_form">
+          <div style={{ textAlign: 'center', fontSize: 25, paddingBottom: 40 }}>Login</div>
           <IonInput
             name="email"
             type="text"
             placeholder="username"
-            color="light"
+            color="black"
             value={email}
             onIonChange={({ detail: { value } }) => setEmail(value!)}
           />
@@ -32,7 +34,7 @@ const Login = () => {
             name="password"
             type="password"
             placeholder="password"
-            color="light"
+            color="black"
             value={password}
             onIonChange={({ detail: { value } }) => setPassword(value!)}
           />

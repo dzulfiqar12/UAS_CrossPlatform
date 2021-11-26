@@ -65,9 +65,9 @@ const ModalSingleMenu = ({ menu, isOpen, setIsOpen }: Props) => {
         <IonCard>
           <IonThumbnail
             className="ion-text-center"
-            style={{ margin: '0 auto', height: '50vh', width: '100vw', objectFit: 'cover' }}
+            style={{ marginTop: '10px', height: '40vh', width: '100%', objectFit: 'cover' }}
           >
-            <IonImg src={menu.photo} alt={menu.name} />
+            <IonImg src={menu.photo} alt={menu.name} style={{ borderRadius: '10px' }} />
           </IonThumbnail>
 
           <IonCardHeader>
