@@ -43,9 +43,9 @@ const goHomeMenus = [
   },
   {
     id: nanoid(),
-    name: 'Bebek Boss',
+    name: 'Bebek Spesial',
     price: 155000,
-    description: 'Bebek boss yang tinggal digoreng!',
+    description: 'Bebek spesial yang tinggal digoreng!',
     photo: fs
       .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
       .toString('base64'),

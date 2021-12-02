@@ -19,7 +19,7 @@ const packageMenus = [
   },
   {
     id: nanoid(),
-    name: 'Koper Ayam Hemat',
+    name: 'Spesial Ayam Hemat',
     price: 20000,
     description: 'Ayam hemat + nasi + tahu / tempe + kol crispy.',
     photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-paket.webp')).toString('base64'),
@@ -30,7 +30,7 @@ const packageMenus = [
   },
   {
     id: nanoid(),
-    name: 'Koper Ayam',
+    name: 'Spesial Ayam',
     price: 23000,
     description: 'Ayam + nasi + tahu / tempe + kol crispy.',
     photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-paket.webp')).toString('base64'),
@@ -41,7 +41,7 @@ const packageMenus = [
   },
   {
     id: nanoid(),
-    name: 'Koper Bebek Reguler',
+    name: 'Paket Bebek',
     price: 24000,
     description: 'Bebek reguler + nasi + tahu / tempe + kol crispy.',
     photo: fs
@@ -54,9 +54,9 @@ const packageMenus = [
   },
   {
     id: nanoid(),
-    name: 'Koper Bebek Boss',
+    name: 'Spesial Bebek',
     price: 31000,
-    description: 'Bebek boss + nasi + tahu / tempe + kol crispy.',
+    description: 'Bebek spesial + nasi + tahu / tempe + kol crispy.',
     photo: fs
       .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
       .toString('base64'),
