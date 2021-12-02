@@ -106,17 +106,12 @@ export const Home: React.FC = () => {
             </IonSegmentButton>
           </IonSegment>
 
-          {/* <IonList>
-            <IonListHeader>
-              <IonTitle>Menu</IonTitle>
-            </IonListHeader> */}
           <IonGrid className="menu">
             <IonRow>
               {menu
                 .filter((item) => item.category === category)
                 .map((item) => (
                   <IonCol size="6">
-                    {/* <IonItem */}
                     <IonCard
                       className="card"
                       onClick={() => {
@@ -125,23 +120,25 @@ export const Home: React.FC = () => {
                       }}
                       key={item.id}
                     >
-                      {/* > */}
-                      {/* <IonAvatar slot="start"> */}
-                      {/* <IonImg src={item.photo} alt={`Avatar of ${item.name}`} className="img" /> */}
-                      {/* </IonAvatar> */}
                       <img src={item.photo} alt={`Avatar of ${item.name}`} className="img" />
+
                       <IonCardHeader>
                         <IonCardTitle className="card-title">{item.name}</IonCardTitle>
                         <IonCardSubtitle>
                           <p style={{ marginBottom: -4 }}>{item.category}</p>
                         </IonCardSubtitle>
                       </IonCardHeader>
+
                       <IonCardContent>
-                        {/* <IonLabel> */}
                         <div className="card-deskripsi">{item.description}</div>
 
                         {(() => {
                           const orderedItem = state.items.find((o) => o.menuId === item.id);
+
+                          // if user is logged in, do not show 'add to cart'
+                          if (user) {
+                            return;
+                          }
 
                           if (!orderedItem) {
                             return (
@@ -175,13 +172,10 @@ export const Home: React.FC = () => {
                             </IonButton>
                           );
                         })()}
-                        {/* </IonLabel> */}
                       </IonCardContent>
                     </IonCard>
-                    {/* </IonItem> */}
                   </IonCol>
                 ))}
-              {/* </IonList> */}
             </IonRow>
           </IonGrid>
         </IonContent>

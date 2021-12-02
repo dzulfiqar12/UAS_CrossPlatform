@@ -21,6 +21,7 @@ import {
 } from '@ionic/react';
 import { Dispatch, SetStateAction, useContext, useState } from 'react';
 
+import { getUser } from '../firebase/auth';
 import type Menu from '../types/Menu';
 import OrderContext from '../utils/context';
 import createItemFromMenu from '../utils/createItemFromMenu';
@@ -35,6 +36,7 @@ const ModalSingleMenu = ({ menu, isOpen, setIsOpen }: Props) => {
   const { dispatch } = useContext(OrderContext);
   const [quantity, setQuantity] = useState(1);
   const [present] = useIonToast();
+  const user = getUser();
 
   const addToCart = (item: Menu) => {
     const itemToBeOrdered = createItemFromMenu(item, quantity);
@@ -87,7 +89,7 @@ const ModalSingleMenu = ({ menu, isOpen, setIsOpen }: Props) => {
                 />
               </IonItem>
 
-              <IonButton onClick={() => addToCart(menu)}>Add to Cart</IonButton>
+              {user ? null : <IonButton onClick={() => addToCart(menu)}>Add to Cart</IonButton>}
             </div>
           </IonCardContent>
         </IonCard>
