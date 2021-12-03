@@ -100,7 +100,7 @@ const alaCarteMenus = [
   },
   {
     id: nanoid(),
-    name: 'Indomie Goreng',
+    name: 'Indomie',
     price: 10000,
     description: 'Indomie Goreng reguler yang lezat.',
     photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'mie-goreng.webp')).toString('base64'),
@@ -111,7 +111,7 @@ const alaCarteMenus = [
   },
   {
     id: nanoid(),
-    name: 'Indomie Goreng + Telur',
+    name: 'Indomie + Telur',
     price: 14000,
     description: 'Indomie Goreng dengan bumbu spesial, ditambah dengan telur bebas.',
     photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'mie-goreng.webp')).toString('base64'),
