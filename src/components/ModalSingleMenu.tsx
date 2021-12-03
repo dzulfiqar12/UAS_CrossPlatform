@@ -71,11 +71,7 @@ const ModalSingleMenu = ({ menu, isOpen, setIsOpen }: Props) => {
               className="ion-text-center"
               style={{ marginTop: '10px', height: '50vh', width: '100%', objectFit: 'cover' }}
             >
-              <IonImg
-                src="https://preview.redd.it/8rpzub06bcw71.jpg?width=3054&format=pjpg&auto=webp&s=32c96957f96cf8c6d05d2a5f3f5d9c5a1a34274f"
-                alt={menu.name}
-                style={{ borderRadius: '10px' }}
-              />
+              <IonImg src={menu.photo} alt={menu.name} style={{ borderRadius: '10px' }} />
             </IonThumbnail>
 
             <IonCardHeader>

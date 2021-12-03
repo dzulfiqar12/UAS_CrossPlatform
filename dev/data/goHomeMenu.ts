@@ -11,7 +11,7 @@ const goHomeMenus = [
     name: 'Ayam Hemat',
     price: 74000,
     description: 'Ayam hemat yang tinggal digoreng!',
-    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-paket.webp')).toString('base64'),
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-hemat.webp')).toString('base64'),
     photoRef: '',
     category: 'Go Home',
     created: Date.now(),
@@ -34,7 +34,7 @@ const goHomeMenus = [
     price: 92000,
     description: 'Bebek reguler yang tinggal digoreng!',
     photo: fs
-      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
+      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-ala-carte.webp'))
       .toString('base64'),
     photoRef: '',
     category: 'Go Home',
