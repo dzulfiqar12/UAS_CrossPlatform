@@ -1,17 +1,21 @@
-/* .content {
-  --background: rgb(243, 171, 171);
-} */
-
 .login_form {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 70%;
 }
 
+.login_form__header {
+  text-align: center;
+  padding-bottom: 2.5px;
+}
+
+.login_form__header_subtitle {
+  font-size: 12px;
+}
+
 .login_form ion-input {
-  /* background-color: #fffafa; */
   border: solid 1px black;
   margin-bottom: 1rem;
   border-radius: 5px;
@@ -23,5 +27,4 @@
   margin-right: auto;
   display: block;
   width: 100%;
-  /* --background: blue; */
 }
