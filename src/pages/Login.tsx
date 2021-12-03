@@ -24,7 +24,7 @@ const Login = () => {
           <IonInput
             name="email"
             type="text"
-            placeholder="username"
+            placeholder="Username..."
             color="black"
             value={email}
             onIonChange={({ detail: { value } }) => setEmail(value!)}
@@ -33,7 +33,7 @@ const Login = () => {
           <IonInput
             name="password"
             type="password"
-            placeholder="password"
+            placeholder="Password..."
             color="black"
             value={password}
             onIonChange={({ detail: { value } }) => setPassword(value!)}
