@@ -54,7 +54,7 @@ const Cart = () => {
           </IonListHeader>
 
           {state.items.map((item) => (
-            <IonItem className="bg2" key={item.id}>
+            <IonItem className="bg2" key={item.id} lines="none">
               <IonLabel className="bg3">
                 <h2>Name: {item.name}</h2>
 
