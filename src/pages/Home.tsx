@@ -115,11 +115,7 @@ export const Home: React.FC = () => {
                   }}
                 >
                   <div>
-                    <img
-                      className="card__img"
-                      src="https://preview.redd.it/8rpzub06bcw71.jpg?width=3054&format=pjpg&auto=webp&s=32c96957f96cf8c6d05d2a5f3f5d9c5a1a34274f"
-                      alt={`Avatar of ${item.name}`}
-                    />
+                    <img className="card__img" src={item.photo} alt={`Avatar of ${item.name}`} />
                   </div>
 
                   <div className="card__content">

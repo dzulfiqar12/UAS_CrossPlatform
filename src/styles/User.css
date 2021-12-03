@@ -47,6 +47,10 @@
   .card__button {
     font-size: 14px;
   }
+
+  .card__img {
+    height: 30vh;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -72,6 +76,10 @@
   .card__button {
     font-size: 12px;
   }
+
+  .card__img {
+    height: 30vh;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -94,6 +102,10 @@
 
   .card__button {
     font-size: 12px;
+  }
+
+  .card__img {
+    height: 30vh;
   }
 }
 
@@ -118,6 +130,10 @@
   .card__button {
     font-size: 10px;
   }
+
+  .card__img {
+    height: 20vh;
+  }
 }
 
 .card {
@@ -130,6 +146,7 @@
 }
 
 .card__img {
+  width: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
