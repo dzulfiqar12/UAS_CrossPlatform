@@ -11,7 +11,7 @@ const alaCarteMenus = [
     name: 'Ayam Hemat',
     price: 14000,
     description: 'Ayam biasa dengan versi yang lebih hemat.',
-    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam.webp')).toString('base64'),
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-hemat.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
     created: Date.now(),
@@ -34,7 +34,7 @@ const alaCarteMenus = [
     price: 18000,
     description: 'Bebek biasa yang merupakan favorit setiap orang.',
     photo: fs
-      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
+      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-hemat.webp'))
       .toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
@@ -47,7 +47,7 @@ const alaCarteMenus = [
     price: 26000,
     description: 'Bebek khas yang memiliki rasa sangat unik dan lezat.',
     photo: fs
-      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
+      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-ala-carte.webp'))
       .toString('base64'),
     photoRef: '',
     category: 'Ala Carte',

@@ -11,7 +11,7 @@ const packageMenus = [
     name: 'Paket Hemat',
     price: 16000,
     description: 'Dapatkan ayam hemat + nasi dengan harga murah! Nasi tidak free refill.',
-    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam.webp')).toString('base64'),
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-hemat.webp')).toString('base64'),
     photoRef: '',
     category: 'Paket',
     created: Date.now(),
@@ -22,7 +22,7 @@ const packageMenus = [
     name: 'Spesial Ayam Hemat',
     price: 20000,
     description: 'Ayam hemat + nasi + tahu / tempe + kol crispy.',
-    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-paket.webp')).toString('base64'),
+    photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'ayam-hemat.webp')).toString('base64'),
     photoRef: '',
     category: 'Paket',
     created: Date.now(),
@@ -45,7 +45,7 @@ const packageMenus = [
     price: 24000,
     description: 'Bebek reguler + nasi + tahu / tempe + kol crispy.',
     photo: fs
-      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
+      .readFileSync(path.join(__dirname, '..', 'img', 'bebek-hemat.webp'))
       .toString('base64'),
     photoRef: '',
     category: 'Paket',
