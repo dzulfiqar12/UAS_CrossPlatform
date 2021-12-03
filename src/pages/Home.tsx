@@ -40,7 +40,7 @@ export const Home: React.FC = () => {
   const { state, dispatch } = useContext(OrderContext);
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
-  const [chosenMenu, setChosenMenu] = useState({} as Menu);
+  const [chosenMenu, setChosenMenu] = useState(null as Menu | null);
   const [showMenuModal, setShowMenuModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(true);
   const user = getUser();
