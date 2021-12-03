@@ -1,5 +1,3 @@
-import '../styles/Home.css';
-
 import {
   IonButton,
   IonButtons,

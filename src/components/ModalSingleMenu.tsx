@@ -1,5 +1,3 @@
-import '../styles/Modal.css';
-
 import {
   IonButton,
   IonButtons,

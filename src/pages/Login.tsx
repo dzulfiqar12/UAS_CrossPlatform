@@ -1,5 +1,3 @@
-import '../styles/Login.css';
-
 import { IonButton, IonContent, IonInput, IonPage, useIonToast } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router';

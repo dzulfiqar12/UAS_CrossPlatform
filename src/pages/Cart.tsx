@@ -1,5 +1,3 @@
-import '../styles/Cart.css';
-
 import {
   IonBackButton,
   IonButton,
