@@ -1,5 +1,3 @@
-import '../../styles/Admin/Index.css';
-
 import {
   IonBackButton,
   IonButton,

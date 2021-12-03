@@ -1,5 +1,3 @@
-import '../../styles/Admin/Index.css';
-
 import { IonButton } from '@ionic/react';
 
 import AdminLayout from '../../components/Admin/AdminLayout';

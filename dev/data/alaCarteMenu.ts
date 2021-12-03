@@ -43,9 +43,9 @@ const alaCarteMenus = [
   },
   {
     id: nanoid(),
-    name: 'Bebek Boss',
+    name: 'Bebek',
     price: 26000,
-    description: 'Bebek khas Pak Boss yang memiliki rasa sangat unik dan lezat.',
+    description: 'Bebek khas yang memiliki rasa sangat unik dan lezat.',
     photo: fs
       .readFileSync(path.join(__dirname, '..', 'img', 'bebek-paket.webp'))
       .toString('base64'),
@@ -80,7 +80,7 @@ const alaCarteMenus = [
     id: nanoid(),
     name: 'Tahu',
     price: 2000,
-    description: 'Tahu khas Pak Boss, lengkap dengan timun.',
+    description: 'Tahu khas lengkap dengan timun.',
     photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'tahu.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
@@ -91,7 +91,7 @@ const alaCarteMenus = [
     id: nanoid(),
     name: 'Tempe',
     price: 2000,
-    description: 'Tempe khas Pak Boss, lengkap dengan timun.',
+    description: 'Tempe khas lengkap dengan timun.',
     photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'tempe.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
@@ -100,9 +100,9 @@ const alaCarteMenus = [
   },
   {
     id: nanoid(),
-    name: 'Indomie Goreng Pak Boss',
+    name: 'Indomie',
     price: 10000,
-    description: 'Indomie Goreng dengan tambahan bumbu Pak Boss.',
+    description: 'Indomie Goreng reguler yang lezat.',
     photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'mie-goreng.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
@@ -111,9 +111,9 @@ const alaCarteMenus = [
   },
   {
     id: nanoid(),
-    name: 'Indomie Goreng Pak Boss + Telur',
+    name: 'Indomie + Telur',
     price: 14000,
-    description: 'Indomie Goreng dengan bumbu Pak Boss, ditambah dengan telur bebas.',
+    description: 'Indomie Goreng dengan bumbu spesial, ditambah dengan telur bebas.',
     photo: fs.readFileSync(path.join(__dirname, '..', 'img', 'mie-goreng.webp')).toString('base64'),
     photoRef: '',
     category: 'Ala Carte',
@@ -122,9 +122,9 @@ const alaCarteMenus = [
   },
   {
     id: nanoid(),
-    name: 'Bubble Boss Drink',
+    name: 'Bubble Drink',
     price: 10000,
-    description: 'Minuman khas Pak Boss dengan rasa yang unik. Banyak rasa!',
+    description: 'Minuman khas dengan rasa yang unik. Banyak rasa!',
     photo: fs
       .readFileSync(path.join(__dirname, '..', 'img', 'bubble-drink.webp'))
       .toString('base64'),

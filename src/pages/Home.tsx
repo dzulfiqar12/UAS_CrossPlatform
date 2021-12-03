@@ -1,27 +1,23 @@
-import '../styles/Home.css';
-
 import {
   IonButton,
   IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCol,
   IonContent,
-  IonGrid,
   IonHeader,
   IonIcon,
   IonLabel,
   IonPage,
-  IonRow,
   IonSegment,
   IonSegmentButton,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import { cartSharp, informationSharp, keySharp, personCircleSharp } from 'ionicons/icons';
+import {
+  cartSharp,
+  checkmarkSharp,
+  informationSharp,
+  keySharp,
+  personCircleSharp,
+} from 'ionicons/icons';
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
@@ -42,7 +38,7 @@ export const Home: React.FC = () => {
   const { state, dispatch } = useContext(OrderContext);
   const [category, setCategory] = useState('Ala Carte' as 'Ala Carte' | 'Paket' | 'Go Home');
   const [menu, setMenu] = useState([] as Menu[]);
-  const [chosenMenu, setChosenMenu] = useState({} as Menu);
+  const [chosenMenu, setChosenMenu] = useState(null as Menu | null);
   const [showMenuModal, setShowMenuModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(true);
   const user = getUser();
@@ -106,84 +102,76 @@ export const Home: React.FC = () => {
             </IonSegmentButton>
           </IonSegment>
 
-          {/* <IonList>
-            <IonListHeader>
-              <IonTitle>Menu</IonTitle>
-            </IonListHeader> */}
-          <IonGrid className="menu">
-            <IonRow>
-              {menu
-                .filter((item) => item.category === category)
-                .map((item) => (
-                  <IonCol size="6">
-                    {/* <IonItem */}
-                    <IonCard
-                      className="card"
-                      onClick={() => {
-                        setChosenMenu(item);
-                        setShowMenuModal(true);
-                      }}
-                      key={item.id}
-                    >
-                      {/* > */}
-                      {/* <IonAvatar slot="start"> */}
-                      {/* <IonImg src={item.photo} alt={`Avatar of ${item.name}`} className="img" /> */}
-                      {/* </IonAvatar> */}
-                      <img src={item.photo} alt={`Avatar of ${item.name}`} className="img" />
-                      <IonCardHeader>
-                        <IonCardTitle className="card-title">{item.name}</IonCardTitle>
-                        <IonCardSubtitle>
-                          <p style={{ marginBottom: -4 }}>{item.category}</p>
-                        </IonCardSubtitle>
-                      </IonCardHeader>
-                      <IonCardContent>
-                        {/* <IonLabel> */}
-                        <div className="card-deskripsi">{item.description}</div>
+          <div className="grid">
+            {menu
+              .filter((item) => item.category === category)
+              .map((item) => (
+                <div
+                  key={item.id}
+                  className="card"
+                  onClick={() => {
+                    setChosenMenu(item);
+                    setShowMenuModal(true);
+                  }}
+                >
+                  <div>
+                    <img
+                      className="card__img"
+                      src="https://preview.redd.it/8rpzub06bcw71.jpg?width=3054&format=pjpg&auto=webp&s=32c96957f96cf8c6d05d2a5f3f5d9c5a1a34274f"
+                      alt={`Avatar of ${item.name}`}
+                    />
+                  </div>
 
-                        {(() => {
-                          const orderedItem = state.items.find((o) => o.menuId === item.id);
+                  <div className="card__content">
+                    <h2 className="card__title">{item.name}</h2>
+                    <h3 className="card__price">Rp. {item.price.toLocaleString('id-ID')}</h3>
+                  </div>
 
-                          if (!orderedItem) {
-                            return (
-                              <div className="button-place">
-                                <IonButton
-                                  className="button"
-                                  size="small"
-                                  onClick={() => {
-                                    setChosenMenu(item);
-                                    setShowMenuModal(true);
-                                  }}
-                                  shape="round"
-                                >
-                                  Add to Cart
-                                </IonButton>
-                              </div>
-                            );
-                          }
+                  <div className="card__spacer"></div>
 
-                          return (
-                            <IonButton
-                              className="button"
-                              size="small"
-                              onClick={() => {
-                                setChosenMenu(item);
-                                setShowMenuModal(true);
-                              }}
-                              shape="round"
-                            >
-                              Ordered: {orderedItem.quantity}
-                            </IonButton>
-                          );
-                        })()}
-                        {/* </IonLabel> */}
-                      </IonCardContent>
-                    </IonCard>
-                    {/* </IonItem> */}
-                  </IonCol>
-                ))}
-              {/* </IonList> */}
-            </IonRow>
-          </IonGrid>
+                  {(() => {
+                    const orderedItem = state.items.find((o) => o.menuId === item.id);
+
+                    // if user is logged in, do not show 'add to cart'
+                    if (user) {
+                      return;
+                    }
+
+                    if (!orderedItem) {
+                      return (
+                        <IonButton
+                          expand="block"
+                          size="small"
+                          color="warning"
+                          onClick={() => {
+                            setChosenMenu(item);
+                            setShowMenuModal(true);
+                          }}
+                        >
+                          <IonIcon slot="start" icon={cartSharp} style={{ fontSize: '12px' }} />
+                          <p className="card__button">Add</p>
+                        </IonButton>
+                      );
+                    }
+
+                    return (
+                      <IonButton
+                        expand="block"
+                        size="small"
+                        color="warning"
+                        onClick={() => {
+                          setChosenMenu(item);
+                          setShowMenuModal(true);
+                        }}
+                      >
+                        <IonIcon slot="start" icon={checkmarkSharp} style={{ fontSize: '12px' }} />
+                        <p className="card__button">Ordered: {orderedItem.quantity}</p>
+                      </IonButton>
+                    );
+                  })()}
+                </div>
+              ))}
+          </div>
         </IonContent>
       </IonPage>
     </>

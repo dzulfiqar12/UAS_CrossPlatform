@@ -1,13 +1,10 @@
+/* Homepage */
 .menu-button {
   width: 80%;
   height: 5rem;
   /* --background: #ffc979; */
   color: black;
 }
-
-/* .background-img {
-  --background: url('../../assets/background.jpg') 0 0/100% 100%;
-} */
 
 .welcome-title {
   text-align: center;

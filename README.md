@@ -1,6 +1,6 @@
 # UAS Cross-Platform
 
-Final project for Mobile Cross-Platform Programming, developed for Ayam Bebek Pak Boss as a part of a study-case.
+Final project for Mobile Cross-Platform Programming.
 
 Complete documentation will be written after the application has been completely finished.
 

@@ -1,5 +1,3 @@
-import '../styles/Login.css';
-
 import { IonButton, IonContent, IonInput, IonPage, useIonToast } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
@@ -10,30 +8,36 @@ import routes from '../utils/routes';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [present] = useIonToast();
   const history = useHistory();
 
   return (
     <IonPage>
-      <IonContent fullscreen className="content">
-        <div className="elipse"></div>
-
+      <IonContent fullscreen>
         <div className="login_form">
-          <div style={{ textAlign: 'center', fontSize: 25, paddingBottom: 40 }}>Login</div>
+          <div className="login_form__header">
+            <h1>Administrator Panel</h1>
+
+            <p className="login_form_header__subtitle">
+              Log in to the service by providing your details below.
+            </p>
+          </div>
+
+          <p>Username</p>
           <IonInput
             name="email"
             type="text"
-            placeholder="username"
+            placeholder="Your username..."
             color="black"
             value={email}
             onIonChange={({ detail: { value } }) => setEmail(value!)}
           />
 
+          <p>Password</p>
           <IonInput
             name="password"
             type="password"
-            placeholder="password"
+            placeholder="Your password..."
             color="black"
             value={password}
             onIonChange={({ detail: { value } }) => setPassword(value!)}
@@ -43,14 +47,12 @@ const Login = () => {
             shape="round"
             fill="solid"
             className="login_button"
-            disabled={isLoggingIn}
+            disabled={email === '' || password === ''}
             onClick={() => {
-              setIsLoggingIn(true);
               login(email, password)
                 .then(() => present('Sign in successful!', 500))
                 .then(() => history.replace(routes.admin))
-                .catch((err) => present(err.message, 1000))
-                .finally(() => setIsLoggingIn(false));
+                .catch((err) => present(err.message, 1000));
             }}
           >
             Login
