@@ -108,7 +108,14 @@ export const Home: React.FC = () => {
             {menu
               .filter((item) => item.category === category)
               .map((item) => (
-                <div key={item.id} className="card">
+                <div
+                  key={item.id}
+                  className="card"
+                  onClick={() => {
+                    setChosenMenu(item);
+                    setShowMenuModal(true);
+                  }}
+                >
                   <div>
                     <img
                       className="card__img"
