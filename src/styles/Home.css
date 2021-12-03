@@ -1,54 +1,113 @@
-/* .content {
-  --background: url('../assets/background.jpg') 0 0/100% 100%;
-} */
+@media only screen and (max-width: 1920px) {
+  .grid {
+    padding: 10px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 10px;
+  }
+
+  .card__title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .card__price {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .card__button {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .grid {
+    padding: 10px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 10px;
+  }
+
+  .card__title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .card__price {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .card__button {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 10px;
+  }
+
+  .card__title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .card__price {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .card__button {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 10px;
+  }
+
+  .card__title {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .card__price {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .card__button {
+    font-size: 10px;
+  }
+}
+
 .card {
-  width: 100%;
-  height: 400px !important;
-  /* background-color: #ffc979; */
-  /* margin: auto; */
-  text-align: left;
-  border-radius: 0px;
-}
-.card .img {
-  /* border-radius: 180px; */
-  width: 100%;
-  height: 40%;
-  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+  background: #ecf0f1;
+  border-radius: 5px;
 }
 
-.menu {
-  margin-right: 5%;
+.card__img {
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.deskripsi {
-  /* width: 100%;
-  height: 10px; */
-  /* overflow: hidden;*/
-  /* margin-top: -100%; */
-}
-.card-title {
-  font-weight: bold;
-  margin-bottom: -7px;
-  margin-top: -5px;
-  width: 100%;
-  /* height: 40px; */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card-deskripsi {
-  /* white-space: nowrap; */
-  overflow-y: scroll;
-  text-overflow: ellipsis;
-  height: 80px;
-  width: 100%;
-}
-
-.button {
-  margin-top: 15px;
-}
-
-.button-place {
-  text-align: center;
+.card__spacer {
+  flex: 1;
 }
