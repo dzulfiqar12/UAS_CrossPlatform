@@ -30,8 +30,8 @@ const HistoryTransactions = () => {
                   {transaction.customerName} - {transaction.tableName}
                 </h2>
                 <h3>{transaction.status}</h3>
-                <h4>{transaction.totalPrice}</h4>
-                <h5>{transaction.created}</h5>
+                <h4>Total : {transaction.totalPrice}</h4>
+                <h5>ID : {transaction.created}</h5>
 
                 {transaction.items.map((item) => (
                   <></>
