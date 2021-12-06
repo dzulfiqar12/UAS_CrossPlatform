@@ -31,7 +31,7 @@ const HistoryTransactions = () => {
                 </h2>
                 <h3>{transaction.status}</h3>
                 <h4>Total : {transaction.totalPrice}</h4>
-                <h5>ID : {transaction.created}</h5>
+                <h5>ID : {transaction.id}</h5>
 
                 {transaction.items.map((item) => (
                   <></>
