@@ -1,3 +1,4 @@
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import {
   IonButton,
   IonButtons,
@@ -22,6 +23,23 @@ import { Dispatch, SetStateAction, useRef, useState } from 'react';
 
 import { createMenu } from '../../firebase/firestore';
 import { uploadMenu } from '../../firebase/storage';
+
+async function fileFromPath(path: string, format: string) {
+  const response = await fetch(path);
+  const blob = await response.blob();
+
+  return new File([blob], `PhotoFromCamera.${format}`, { type: `image/${format}` });
+}
+
+async function takePhoto() {
+  const cameraPhoto = await Camera.getPhoto({
+    resultType: CameraResultType.Uri,
+    source: CameraSource.Camera,
+    quality: 100,
+  });
+
+  return cameraPhoto;
+}
 
 type Props = {
   isOpen: boolean;
@@ -127,11 +145,34 @@ const NewMenu = ({ isOpen, setIsOpen, updater }: Props) => {
                     setPhoto(undefined);
                   }}
                 />
-                {photo ? photo.name : 'Choose photo'}
+                Choose photo from album
+              </IonButton>
+
+              <IonButton
+                color="warning"
+                expand="block"
+                style={{ marginBottom: '20px' }}
+                onClick={async () => {
+                  const cameraPhoto = await takePhoto();
+                  if (!cameraPhoto.webPath) {
+                    present('Failed to use the camera!', 1000);
+                    return;
+                  }
+
+                  const file = await fileFromPath(cameraPhoto.webPath, cameraPhoto.format);
+                  if (!file) {
+                    present('Failed to perform file conversion from Data URIs.', 1000);
+                    return;
+                  }
+
+                  setPhoto(file);
+                }}
+              >
+                Take photo from camera
               </IonButton>
 
               <p style={{ textAlign: 'center' }}>
-                Menu photo is {photo ? photo.name : 'not chosen yet!'}
+                Chosen menu photo is {photo ? photo.name : 'not chosen yet!'}
               </p>
 
               <IonButton

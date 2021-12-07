@@ -1,3 +1,4 @@
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import {
   IonButton,
   IonButtons,
@@ -22,6 +23,23 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { updateMenu } from '../../firebase/firestore';
 import { deleteMenu, uploadMenu } from '../../firebase/storage';
 import type Menu from '../../types/Menu';
+
+async function fileFromPath(path: string, format: string) {
+  const response = await fetch(path);
+  const blob = await response.blob();
+
+  return new File([blob], `PhotoFromCamera.${format}`, { type: `image/${format}` });
+}
+
+async function takePhoto() {
+  const cameraPhoto = await Camera.getPhoto({
+    resultType: CameraResultType.Uri,
+    source: CameraSource.Camera,
+    quality: 100,
+  });
+
+  return cameraPhoto;
+}
 
 type Props = {
   isOpen: boolean;
@@ -141,7 +159,30 @@ const EditMenu = ({ isOpen, setIsOpen, updater, data }: Props) => {
                         setPhoto(undefined);
                       }}
                     />
-                    {photo ? photo.name : 'Change photo'}
+                    Change photo from album
+                  </IonButton>
+
+                  <IonButton
+                    color="warning"
+                    expand="block"
+                    style={{ marginBottom: '20px' }}
+                    onClick={async () => {
+                      const cameraPhoto = await takePhoto();
+                      if (!cameraPhoto.webPath) {
+                        present('Failed to use the camera!', 1000);
+                        return;
+                      }
+
+                      const file = await fileFromPath(cameraPhoto.webPath, cameraPhoto.format);
+                      if (!file) {
+                        present('Failed to perform file conversion from Data URIs.', 1000);
+                        return;
+                      }
+
+                      setPhoto(file);
+                    }}
+                  >
+                    Change photo from camera
                   </IonButton>
 
                   <p style={{ textAlign: 'center' }}>

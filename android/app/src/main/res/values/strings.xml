@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ayam Bebek</string>
+    <string name="title_activity_main">Ayam Bebek</string>
+    <string name="package_name">umn.ac.id.ayam.bebek</string>
+    <string name="custom_url_scheme">umn.ac.id.ayam.bebek</string>
+</resources>
