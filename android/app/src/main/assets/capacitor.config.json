@@ -1,0 +1,6 @@
+{
+	"appId": "umn.ac.id.ayam.bebek",
+	"appName": "ayam-bebek",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
