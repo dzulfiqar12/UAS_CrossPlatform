@@ -1,4 +1,4 @@
-import { IonItem, IonLabel, IonList, IonListHeader, IonTitle } from '@ionic/react';
+import { IonBadge, IonItem, IonLabel, IonList, IonListHeader, IonTitle } from '@ionic/react';
 import { useEffect, useState } from 'react';
 
 import AdminLayout from '../../components/Admin/AdminLayout';
@@ -26,17 +26,24 @@ const HistoryTransactions = () => {
           .map((transaction) => (
             <IonItem key={transaction.id}>
               <IonLabel>
-                <h2>
-                  {transaction.customerName} - {transaction.tableName}
-                </h2>
-                <h3>{transaction.status}</h3>
-                <h4>Total: Rp. {transaction.totalPrice.toLocaleString('id-ID')}</h4>
-                <h5>Order ID: {transaction.id}</h5>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <p style={{ fontWeight: 'bold', textTransform: 'capitalize' }}>
+                    {transaction.customerName} ({transaction.tableName})
+                  </p>
+
+                  <IonBadge color="success">{transaction.status}</IonBadge>
+                </div>
+
+                <h4>ID: {transaction.id}</h4>
+                <h5>Rp. {transaction.totalPrice.toLocaleString('id-ID')}</h5>
+                <h5>{new Date(transaction.created).toLocaleString('id-ID')}</h5>
+
+                <div style={{ padding: '5px' }}></div>
 
                 <h5>Orders:</h5>
-                {transaction.items.map((item) => (
+                {transaction.items.map((item, idx) => (
                   <p key={item.id}>
-                    {item.name} {item.quantity}x
+                    {idx + 1}. {item.name} ({item.quantity}x)
                   </p>
                 ))}
               </IonLabel>

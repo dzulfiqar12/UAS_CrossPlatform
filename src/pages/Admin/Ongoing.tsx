@@ -55,8 +55,11 @@ const InProgressTransactions = () => {
                 </div>
 
                 <h4>Rp. {transaction.totalPrice.toLocaleString('id-ID')}</h4>
+                <h5>{new Date(transaction.created).toLocaleString('id-ID')}</h5>
 
-                <h4>Ordered items:</h4>
+                <div style={{ padding: '5px' }}></div>
+
+                <h5>Ordered items:</h5>
                 {transaction.items.map((item, idx) => (
                   <p key={item.id}>
                     {idx + 1}. {item.name} ({item.quantity}x)
