@@ -66,21 +66,27 @@ const InProgressTransactions = () => {
                   </p>
                 ))}
 
-                {/* <ul>
-                  {transaction.items.map((item) => (
-                    <li key={item.id}>
-                      {item.name} {item.quantity}x
-                    </li>
-                  ))}
-                </ul> */}
-
                 <IonButton
                   color="success"
                   onClick={() => {
-                    acceptTransaction(transaction.id)
-                      .then(() => presentToast('Order has been finished!', 500))
-                      .then(() => fetchTransactionsInApp())
-                      .catch((err) => presentToast(err, 500));
+                    presentAlert({
+                      header: 'Warning!',
+                      subHeader: 'This action cannot be reversed.',
+                      message: 'Are you sure to finish this order?',
+                      buttons: [
+                        { text: 'Cancel', role: 'cancel' },
+                        {
+                          text: 'Finish',
+                          role: 'accept',
+                          handler: () => {
+                            acceptTransaction(transaction.id)
+                              .then(() => presentToast('Order has been finished!', 500))
+                              .then(() => fetchTransactionsInApp())
+                              .catch((err) => presentToast(err, 500));
+                          },
+                        },
+                      ],
+                    });
                   }}
                 >
                   <IonIcon icon={checkmarkSharp} slot="start" />
