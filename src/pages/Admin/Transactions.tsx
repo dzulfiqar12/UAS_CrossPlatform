@@ -30,11 +30,14 @@ const HistoryTransactions = () => {
                   {transaction.customerName} - {transaction.tableName}
                 </h2>
                 <h3>{transaction.status}</h3>
-                <h4>Total : {transaction.totalPrice}</h4>
-                <h5>ID : {transaction.id}</h5>
+                <h4>Total: Rp. {transaction.totalPrice.toLocaleString('id-ID')}</h4>
+                <h5>Order ID: {transaction.id}</h5>
 
+                <h5>Orders:</h5>
                 {transaction.items.map((item) => (
-                  <></>
+                  <p key={item.id}>
+                    {item.name} {item.quantity}x
+                  </p>
                 ))}
               </IonLabel>
             </IonItem>
