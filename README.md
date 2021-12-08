@@ -2,7 +2,7 @@
 
 Final project for Mobile Cross-Platform Programming.
 
-Complete documentation will be written after the application has been completely finished.
+Live version is hosted with Firebase Hosting at [https://ayam-bebek-73e5e.web.app/app/home](https://ayam-bebek-73e5e.web.app/app/home).
 
 ## Notes
 
@@ -44,7 +44,7 @@ cd UAS_CrossPlatform
 npm i
 ```
 
-- You may run database migration by typing the following command. Keep in mind that this will remove all of the data in the `menu` and `transactions` collections.
+- You may run database migration by typing the following command. Keep in mind that this will remove all of the data in the `menu` and `transactions` collections. You need a Linux machine in order to run this migration.
 
 ```bash
 export USERNAME=...
