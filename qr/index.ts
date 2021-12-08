@@ -3,7 +3,7 @@ import qr from 'qrcode';
 
 async function main() {
   const tableName = '1A';
-  const websiteURL = 'https://ayam-bebek-pak-boss-dev--dev-m305ihi0.web.app/app/home';
+  const websiteURL = 'https://ayam-bebek-73e5e.web.app/app/home';
 
   try {
     const base64String = await qr.toDataURL(`${websiteURL}/${tableName}`);
