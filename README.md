@@ -24,7 +24,35 @@ For production:
 
 You need to set up Firebase Authentication, Firebase Cloud Storage, Firebase Firestore, and Firebase Hosting in order for this application to work properly in production scenarios. You may have to set up service accounts if you want the CI to be working.
 
+## Quick Start
+
+- For quick setup, you need to perform the following commands. Clone the repo first.
+
+```bash
+git clone https://github.com/dzulfiqar12/UAS_CrossPlatform.git
+```
+
+- Switch to this repository.
+
+```bash
+cd UAS_CrossPlatform
+```
+
+- Install all dependencies.
+
+```bash
+npm i
+```
+
+- Run the app. Feel free to use the already setup Firebase as you see fit.
+
+```bash
+ionic serve
+```
+
 ## Development
+
+For development from scratch, you need to do the following commands.
 
 - Clone this repository.
 
